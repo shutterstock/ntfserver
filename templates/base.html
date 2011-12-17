@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>{% if title %}{{ title }} - {% endif %}Tests</title>
+    <link href="/style.css" rel="stylesheet" type="text/css">
+    {% if not noJquery %}<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>{% endif %}
+    {% if not noSocketIo %}<script src="/socket.io/socket.io.js"></script>{% endif %}
+  </head>
+  <body  id="{{ bodyid }}">
+    <div id="container">
+      <div id="content">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

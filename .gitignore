@@ -1,0 +1,4 @@
+*.0
+*.log
+*swp
+node_modules

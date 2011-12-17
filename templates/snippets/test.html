@@ -1,0 +1,23 @@
+<dl>
+{% if suite.timestamp %}
+  <dt>Timestamp</dt>
+    <dd>{{ suite.timestamp }}</dd>
+{% endif %}
+  <dt>Duration</dt>
+    <dd>{{ suite.duration }} ms</dd>
+  <dt>Passes</dt>
+    <dd>{{ suite.passes }}</dd>
+  <dt>Failures</dt>
+    <dd>{{ suite.failures }}</dd>
+</dl>
+
+<ul>
+{% for name, tests in suite.results %}
+  <li>{{ name }}</li>
+  <ul>
+  {% for test in tests %}
+    <li class="{% if test.failed %}failure{% else %}success{% endif %}">{{ test.message }}</li>
+  {% endfor %}
+  </ul>
+{% endfor %}
+</ul>

@@ -1,0 +1,24 @@
+{
+  "name": "ntfd",
+  "description": "Network Testing Framework Daemon",
+  "version": "0.0.1",
+  "engines": { "node": ">= 0.4" },
+  "dependencies": {
+    "async": ">= 0.1.10",
+    "express": ">= 2.4.7",
+    "hiredis": ">= 0.1.12",
+    "iniparser": ">= 1.0.4",
+    "jinjs": ">= 0.3.4",
+    "nodeunit": ">= 0.5.3",
+    "nomnom": ">= 1.5.1",
+    "ntf": ">= 0.0.1",
+    "redis": ">= 0.6.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/silas/ntfd.git"
+  },
+  "bugs" : { "url" : "http://github.com/silas/ntfd/issues" },
+  "bin" : { "ntfd" : "./bin/ntfd" },
+  "main": "lib/ntfd/app"
+}
