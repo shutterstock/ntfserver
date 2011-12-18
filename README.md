@@ -12,10 +12,12 @@ tests.
 
 ### Usage
 
-    # install library
+Install ntfd
+
     npm install -g ntfd
 
-    # create config file
+Create configuration file
+
     cat << EOF > ntfd.conf
     [http]
     port = 8000
@@ -31,7 +33,8 @@ tests.
     timeout = 60
     EOF
 
-    # run daemon
+Run ntfd
+
     ntfd -c ntfd.conf
 
 Open [localhost:8000/test](http://localhost:8000/test) in your browser.
