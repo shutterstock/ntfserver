@@ -4,7 +4,11 @@ function handleTest(app, data) {
   row.attr('name', 'test-' + data.name);
   row.attr('class', 'box ' + (data.failures > 0 ? 'failure' : 'success') + '-box');
 
-  row.append($('<td/>').text(data.name));
+  var link = $('<a target="_blank"/>');
+  link.attr('href', '/test/' + data.name);
+  link.text(data.name);
+
+  row.append($('<td/>').append(link));
   row.append($('<td/>').text(data.duration));
   row.append($('<td/>').text(data.passes));
   row.append($('<td/>').text(data.failures));
