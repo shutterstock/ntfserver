@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
+{% block head_title %}Test - {{ super() }}{% endblock %}
+
 {% block content %}
 <h1>Test</h1>
 
-{% for name, suite in data %}
-  <h2><a href="/test/{{ name }}">{{ name }}</a></h2>
-  {% include "snippets/test.html" %}
+<ul>
+{% for test in data %}
+  <li><a href="{{ test.url }}">{{ test.name }}</a></li>
 {% endfor %}
+</ul>
 {% endblock %}

@@ -12,7 +12,8 @@
     "nodeunit": ">= 0.5.3",
     "nomnom": ">= 1.5.1",
     "ntf": ">= 0.0.1",
-    "redis": ">= 0.6.7"
+    "redis": ">= 0.6.7",
+    "socket.io": ">= 0.8.7"
   },
   "repository": {
     "type": "git",
