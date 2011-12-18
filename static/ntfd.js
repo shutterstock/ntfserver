@@ -1,6 +1,32 @@
-var socket = io.connect();
+function handleTest(app, data) {
+  var row = $('<tr/>');
 
-socket.on('test', function (data) {
-  var p = $('<p/>').text(JSON.stringify(data));
-  $('#notifications').prepend(p);
-});
+  row.attr('name', 'test-' + data.name);
+  row.attr('class', 'box ' + (data.failures > 0 ? 'failure' : 'success') + '-box');
+
+  row.append($('<td/>').text(data.name));
+  row.append($('<td/>').text(data.duration));
+  row.append($('<td/>').text(data.passes));
+  row.append($('<td/>').text(data.failures));
+
+  $(app.dom.events + ' tr[name=test-' + data.name + ']').remove();
+  $(app.dom.events).prepend(row);
+}
+
+function setupSocket(app) {
+  var socket = app.socket = io.connect();
+
+  socket.on('test', function(data) { handleTest(app, data); } );
+
+  return app;
+}
+
+function main() {
+  var app = {};
+
+  app.dom = { events: '#events tbody' };
+
+  app = setupSocket(app);
+
+  return app;
+}
