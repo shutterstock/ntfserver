@@ -13,7 +13,7 @@
 
 <ul>
 {% for name, tests in suite.results %}
-  <li>{{ name }}</li>
+  <li>{{ formatTestName(name) }}</li>
   <ul>
   {% for test in tests %}
     <li class="{% if test.failed %}failure{% else %}success{% endif %}">{{ test.message }}</li>
