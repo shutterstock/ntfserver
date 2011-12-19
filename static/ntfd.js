@@ -13,7 +13,7 @@ function handleTest(app, data) {
   row.append($('<td/>').text(data.passes));
   row.append($('<td/>').text(data.failures));
 
-  $(app.dom.events + ' tr[name=test-' + data.name + ']').remove();
+  $(app.dom.events + ' tr[name="test-' + data.name + '"]').remove();
   $(app.dom.events).prepend(row);
 }
 
