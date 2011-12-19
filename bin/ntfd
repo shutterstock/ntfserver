@@ -43,6 +43,11 @@ if (config.test.module == 'ntfd') {
   config.test.module = path.join(path.dirname(require.resolve('ntf')), '..', '..', 'examples', 'basic')
 }
 
+// if module starts with a period make relative to current working directory
+if (config.test.module.match(/^\./)) {
+  config.test.module = path.resolve(config.test.module)
+}
+
 try {
   config.test.module = require(config.test.module)
 } catch(err) {
