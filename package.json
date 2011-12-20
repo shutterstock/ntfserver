@@ -6,7 +6,6 @@
   "dependencies": {
     "async": ">= 0.1.10",
     "express": ">= 2.4.7",
-    "hiredis": ">= 0.1.12",
     "iniparser": ">= 1.0.4",
     "jinjs": ">= 0.3.4",
     "nodeunit": ">= 0.5.3",
