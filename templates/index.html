@@ -19,7 +19,16 @@
       <th>Failures</th>
     </tr>
   </thead>
-  <tbody></tbody>
+  <tbody>
+  {% for name, test in data %}
+    <tr class="box {% if data.failures > 0 %}failure{% else %}success{% endif %}-box" name="test-{{ test.name }}">
+      <td><a href="/test/{{ test.name }}" target="_blank">{{ test.name }}</a></td>
+      <td>{{ test.duration }}</td>
+      <td>{{ test.passes }}</td>
+      <td>{{ test.failures }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
 </table>
 
 <script>var app = main();</script>
