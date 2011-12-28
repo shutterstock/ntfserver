@@ -12,11 +12,11 @@
 </dl>
 
 <ul>
-{% for name, tests in suite.results %}
-  <li>{{ formatTestName(name) }}</li>
+{% for name, result in suite.results %}
+  <li>{{ formatTestName(name) }} ({{ result.duration }} ms)</li>
   <ul>
-  {% for test in tests %}
-    <li class="{% if test.failed %}failure{% else %}success{% endif %}">{{ test.message }}</li>
+  {% for assert in result.assertions %}
+    <li class="{% if assert.ok %}success{% else %}failure{% endif %}">{{ assert.message }}</li>
   {% endfor %}
   </ul>
 {% endfor %}
