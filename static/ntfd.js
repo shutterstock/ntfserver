@@ -20,6 +20,8 @@ function handleTest(app, data) {
 function setupSocket(app) {
   var socket = app.socket = io.connect();
 
+  socket.emit('test', true);
+
   socket.on('test', function(data) {
     handleTest(app, data);
   });
