@@ -1,0 +1,8 @@
+{
+  "name": "ntfd-example",
+  "description": "ntfd example",
+  "dependencies": {
+    "ntfd": ">= 0.1.0"
+  },
+  "main": "./tests"
+}

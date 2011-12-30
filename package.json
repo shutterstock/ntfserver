@@ -6,10 +6,8 @@
   "dependencies": {
     "async": ">= 0.1.10",
     "express": ">= 2.4.7",
-    "iniparser": ">= 1.0.4",
     "jinjs": ">= 0.3.4",
     "nodeunit": ">= 0.5.3",
-    "nomnom": ">= 1.5.1",
     "ntf": ">= 0.0.3",
     "redis": ">= 0.6.7",
     "socket.io": ">= 0.8.7"
@@ -19,6 +17,5 @@
     "url": "http://github.com/silas/ntfd.git"
   },
   "bugs" : { "url" : "http://github.com/silas/ntfd/issues" },
-  "bin" : { "ntfd" : "./bin/ntfd" },
-  "main": "lib/ntfd/app"
+  "main": "lib/ntfd"
 }

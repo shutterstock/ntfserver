@@ -12,30 +12,21 @@ tests.
 
 ### Usage
 
-Install ntfd
+Clone repository
 
-    npm install -g ntfd
+    git clone git://github.com/silas/ntfd.git
 
-Create configuration file
+Switch to `example` directory
 
-    cat << EOF > ntfd.conf
-    [http]
-    port = 8000
-    secret = changeme
+    cd ntfd/example
 
-    [redis]
-    host = 127.0.0.1
-    port = 6379
-    database = 0
+Install requirements
 
-    [test]
-    module = ntfd
-    timeout = 60
-    EOF
+    npm install
 
-Run ntfd
+Run daemon
 
-    ntfd -c ntfd.conf
+    node .
 
 Open [localhost:8000/test](http://localhost:8000/test) in your browser.
 
