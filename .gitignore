@@ -1,4 +1,6 @@
 *.0
 *.log
+*.tar.*
+*.tgz
 *swp
 node_modules
