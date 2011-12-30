@@ -28,7 +28,7 @@ Run daemon
 
     node .
 
-Open [localhost:8000/test](http://localhost:8000/test) in your browser.
+Open [localhost:8000](http://localhost:8000) in your browser.
 
 ### License
 
