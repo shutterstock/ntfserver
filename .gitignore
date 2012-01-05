@@ -1,6 +1,8 @@
 *.0
 *.log
+*.min.*
 *.tar.*
 *.tgz
 *swp
+deps
 node_modules
