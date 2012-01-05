@@ -4,14 +4,25 @@
     {% block head %}
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>{% block head_title %}ntfd{% endblock %}</title>
-    <link href="/style.css" rel="stylesheet" type="text/css">
+    <link href="/vendor.css" rel="stylesheet" type="text/css">
+    <link href="/ntfd.css" rel="stylesheet" type="text/css">
+    <script src="/vendor.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/ntfd.js"></script>
     {% endblock %}
   </head>
   <body  id="{{ bodyid }}">
-    <div id="container">
-      <div id="content">
-        {% block content %}{% endblock %}
+    <div class="topbar">
+      <div class="fill">
+        <div class="container-fluid">
+          <a class="brand" href="/">ntf</a>
+        </div>
       </div>
     </div>
+
+    <div class="container-fluid">
+      {% block content %}{% endblock %}
+    </div>
+    {% block footer %}{% endblock %}
   </body>
 </html>

@@ -6,3 +6,4 @@
 *swp
 deps
 node_modules
+vendor.*

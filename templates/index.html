@@ -1,17 +1,6 @@
 {% extends "base.html" %}
 
-{% block head %}
-{{ super() }}
-<link href="/rickshaw.min.js" rel="stylesheet" type="text/css">
-<script src="/jquery.min.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/rickshaw.min.js"></script>
-<script src="/ntfd.js"></script>
-{% endblock %}
-
 {% block content %}
-<h1>ntfd</h1>
-
 <table id="events">
   <thead>
     <tr>
@@ -32,6 +21,8 @@
   {% endfor %}
   </tbody>
 </table>
-
-<script>var app = main();</script>
 {% endblock %}
+
+{% block footer %}
+<script>var app = main();</script>
+{% endblock %}}
