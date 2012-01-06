@@ -5,6 +5,8 @@
 {% block content %}
 <h1>{{ data[0].name }}</h1>
 
+<div id="durationGraph"></div>
+
 {% for suite in data %}
 {% include "snippets/test.html" %}
 {% endfor %}

@@ -1,15 +1,25 @@
-<dl>
+<table>
+  <thead>
+    <tr>
+      <th>Passes</th>
+      <th>Failures</th>
+      <th>Duration (ms)</th>
 {% if suite.timestamp %}
-  <dt>Timestamp</dt>
-    <dd>{{ suite.timestamp }}</dd>
+      <th>Timestamp</th>
 {% endif %}
-  <dt>Duration</dt>
-    <dd>{{ suite.duration }} ms</dd>
-  <dt>Passes</dt>
-    <dd>{{ suite.passes }}</dd>
-  <dt>Failures</dt>
-    <dd>{{ suite.failures }}</dd>
-</dl>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ suite.passes }}</td>
+      <td>{{ suite.failures }}</td>
+      <td>{{ suite.duration }}</td>
+{% if suite.timestamp %}
+      <td>{{ suite.timestamp }}</td>
+{% endif %}
+    </tr>
+  </tbody>
+</table>
 
 <ul>
 {% for name, result in suite.results %}

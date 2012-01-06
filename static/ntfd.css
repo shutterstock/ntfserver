@@ -43,3 +43,7 @@ th, td {
 .failure-box {
   background-color: #C43C35;
 }
+
+#durationGraph {
+  margin-bottom: 1em;
+}
