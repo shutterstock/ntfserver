@@ -18,10 +18,10 @@ deps:
 	# get bootstrap
 	curl -s http://twitter.github.com/bootstrap/$(BOOTSTRAP_VERSION)/bootstrap.min.css > deps/bootstrap.min.css
 	# get d3
-	curl https://raw.github.com/mbostock/d3/gh-pages/d3.min.js > deps/d3.min.js
-	curl https://raw.github.com/mbostock/d3/gh-pages/d3.layout.min.js > deps/d3.layout.min.js
+	curl -s https://raw.github.com/mbostock/d3/gh-pages/d3.min.js > deps/d3.min.js
+	curl -s https://raw.github.com/mbostock/d3/gh-pages/d3.layout.min.js > deps/d3.layout.min.js
 	# get jquery
-	curl http://ajax.googleapis.com/ajax/libs/jquery/$(JQUERY_VERSION)/jquery.min.js > deps/jquery.min.js
+	curl -s http://ajax.googleapis.com/ajax/libs/jquery/$(JQUERY_VERSION)/jquery.min.js > deps/jquery.min.js
 	# get rickshaw
 	git clone git://github.com/shutterstock/rickshaw.git deps/rickshaw
 	cd deps/rickshaw && git checkout $(RICKSHAW_VERSION) && make build
