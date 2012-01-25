@@ -5,13 +5,13 @@ RICKSHAW_VERSION="master"
 TAG=$(shell git tag | sort --version-sort | tail -n 1)
 
 build: clean deps
-	git archive --format=tar --prefix="ntfd-$(TAG)/" "$(TAG)" > "ntfd-$(TAG).tar"
-	tar -xf "ntfd-$(TAG).tar"
-	rm -f "ntfd-$(TAG).tar"
-	cp deps/vendor.css "ntfd-$(TAG)/static/vendor.css"
-	cp deps/vendor.js "ntfd-$(TAG)/static/vendor.js"
-	tar -czf "ntfd-$(TAG).tgz" "ntfd-$(TAG)/"
-	rm -fr "ntfd-$(TAG)"
+	git archive --format=tar --prefix="ntfserver-$(TAG)/" "$(TAG)" > "ntfserver-$(TAG).tar"
+	tar -xf "ntfserver-$(TAG).tar"
+	rm -f "ntfserver-$(TAG).tar"
+	cp deps/vendor.css "ntfserver-$(TAG)/static/vendor.css"
+	cp deps/vendor.js "ntfserver-$(TAG)/static/vendor.js"
+	tar -czf "ntfserver-$(TAG).tgz" "ntfserver-$(TAG)/"
+	rm -fr "ntfserver-$(TAG)"
 
 deps:
 	mkdir -p deps
