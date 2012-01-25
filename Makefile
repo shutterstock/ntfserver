@@ -39,6 +39,7 @@ deps:
 	cat deps/rickshaw/rickshaw.min.js >> deps/vendor.js
 
 dev: deps
+	mkdir static
 	cp deps/vendor.css static/vendor.css
 	cp deps/vendor.js static/vendor.js
 
