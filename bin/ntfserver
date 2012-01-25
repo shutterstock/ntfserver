@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+
+var fs = require('fs')
+  , iniparser = require('iniparser')
+  , path = require('path')
+  , global = require('../lib/ntfserver/global')
+  , ntfserver = require('../lib/ntfserver')
+
+var argv = []
+  , configPath = ''
+  , options = {}
+
+for (var i in process.argv) {
+  var v = process.argv[i]
+    , hasNext = i+2 <= process.argv.length
+
+  switch (v) {
+    case '-c':
+      if (process.argv.length < i+2) {
+        configPath = process.argv[i+1]
+      } else {
+        console.log('Configuration path required')
+        process.exit(1)
+      }
+      break
+    case '-v':
+      console.log(ntfserver.version)
+      process.exit(0)
+      break
+    default:
+      argv.push(v)
+  }
+}
+
+if (configPath) {
+  try {
+    var stat = fs.lstatSync(configPath)
+  } catch(err) {
+    console.log('Configuration file not found: ' + configPath)
+    process.exit(1)
+  }
+
+  if (!stat.isFile()) {
+    console.log('Configuration path is not a file: ' + configPath)
+    process.exit(1)
+  }
+
+  options = iniparser.parseSync(configPath)
+}
+
+var server = ntfserver.createServer(options)
+
+server.listen(global.options.http.port)
