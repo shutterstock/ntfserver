@@ -136,7 +136,7 @@ exports.testResultGetOrInsert = function(test) {
   async.waterfall([
     // setup
     function(cb) {
-      helper.setUpFixtures({ suite_result: true }, cb)
+      helper.setUpFixtures({ suite_result: true, test: true }, cb)
     },
     // insert
     function(context, cb) {
