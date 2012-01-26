@@ -1,4 +1,5 @@
 var async = require('async')
+  , global = require('../lib/ntfserver/global')
   , helper = require('./assets/helper')
   , models = require('../lib/ntfserver/models')
 
@@ -77,7 +78,8 @@ exports.testGetOrInsert = function(test) {
     function(cb) { helper.setUpFixtures({ suite: 1 }, cb) },
     // insert
     function(context, cb) {
-      models.Test.getOrInsert({ suite_id: context.suite_id, name: 'test' }, function(err, id) {
+      context.name = 'test'
+      models.Test.getOrInsert(context, function(err, id) {
         if (err) return cb(err)
         test.equal(id, 1)
         cb(null, context)
@@ -86,7 +88,7 @@ exports.testGetOrInsert = function(test) {
     // get from cache
     function(context, cb) {
       models.Test.cache[context.suite_id + '|test'] = 2
-      models.Test.getOrInsert({ suite_id: context.suite_id, name: 'test' }, function(err, id) {
+      models.Test.getOrInsert(context, function(err, id) {
         if (err) return cb(err)
         test.equal(id, 2)
         cb(null, context)
@@ -95,7 +97,7 @@ exports.testGetOrInsert = function(test) {
     // get from database
     function(context, cb) {
       models.Test.cache = {}
-      models.Test.getOrInsert({ suite_id: context.suite_id, name: 'test' }, function(err, id) {
+      models.Test.getOrInsert(context, function(err, id) {
         if (err) return cb(err)
         test.equal(id, 1)
         cb()

@@ -14,12 +14,25 @@ exports.setUpSql = function(cb) {
   }
   global.sql = mysql.createClient(global.options.mysql)
 
-  var tables = ['agent', 'suite', 'test', 'test_result', 'assertion']
+  var tables = [
+    'assertion',
+    'test_result',
+    'test',
+    'suite',
+    'agent',
+  ]
 
-  async.series([
-    function(cb) { global.sql.query('DROP TABLE IF EXISTS ' + tables.join(','), cb) },
-    function(cb) { global.setupSql(global.options, cb) },
-  ], function(err) {
+  work = []
+
+  work.push(function(cb) {
+    global.sql.query('DROP TABLE IF EXISTS ' + tables.join(','), cb)
+  })
+
+  work.push(function(cb) {
+    global.setupSql(global.options, cb)
+  })
+
+  async.series(work, function(err) {
     if (err) throw err
     cb()
   })
