@@ -155,7 +155,7 @@ exports.assertionGetOrInsert = function(test) {
   async.series([
     // insert
     function(cb) {
-      models.Assertion.getOrInsert({ message: 'assertion' }, function(err, id) {
+      models.Assertion.getOrInsert({ name: 'assertion' }, function(err, id) {
         if (err) throw err
         test.equal(id, 1)
         cb()
@@ -164,7 +164,7 @@ exports.assertionGetOrInsert = function(test) {
     // get from cache
     function(cb) {
       models.Assertion.cache.assertion = 2
-      models.Assertion.getOrInsert({ message: 'assertion' }, function(err, id) {
+      models.Assertion.getOrInsert({ name: 'assertion' }, function(err, id) {
         if (err) throw err
         test.equal(id, 2)
         cb()
@@ -173,7 +173,7 @@ exports.assertionGetOrInsert = function(test) {
     // get from database
     function(cb) {
       models.Assertion.cache = {}
-      models.Assertion.getOrInsert({ message: 'assertion' }, function(err, id) {
+      models.Assertion.getOrInsert({ name: 'assertion' }, function(err, id) {
         if (err) throw err
         test.equal(id, 1)
         cb()
