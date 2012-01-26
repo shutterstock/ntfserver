@@ -21,6 +21,7 @@ exports.setUpSql = function(cb) {
     'assertion',
     'test_result',
     'test',
+    'suite_result',
     'suite',
     'agent',
   ]
@@ -54,9 +55,11 @@ exports.setUpFixtures = function(setup, cb) {
 
   if (setup.assertion_result) setup.assertion = true
   if (setup.assertion_result) setup.test_result = true
-  if (setup.test_result) setup.agent = true
-  if (setup.test_result) setup.test = true
   if (setup.test) setup.suite = true
+  if (setup.test_result) setup.suite_result = true
+  if (setup.test_result) setup.test = true
+  if (setup.suite_result) setup.agent = true
+  if (setup.suite_result) setup.suite = true
 
   if (setup.agent) {
     work.push(function(context, cb) {
@@ -76,6 +79,23 @@ exports.setUpFixtures = function(setup, cb) {
     })
   }
 
+  if (setup.suite_result) {
+    work.push(function(context, cb) {
+      context.duration = 123
+      context.pass_count = 8
+      context.fail_count = 2
+      context.time = 123456789
+      models.SuiteResult.getOrInsert(context, function(err, id) {
+        context.suite_result_id = id
+        delete context.duration
+        delete context.pass_count
+        delete context.fail_count
+        delete context.time
+        cb(err, context)
+      })
+    })
+  }
+
   if (setup.test) {
     work.push(function(context, cb) {
       context.name = 'test'
@@ -90,15 +110,13 @@ exports.setUpFixtures = function(setup, cb) {
   if (setup.test_result) {
     work.push(function(context, cb) {
       context.duration = 123
-      context.passes = 8
-      context.failures = 2
-      context.time = 123456789
+      context.pass_count = 3
+      context.fail_count = 1
       models.TestResult.getOrInsert(context, function(err, id) {
         context.test_result_id = id
         delete context.duration
-        delete context.passes
-        delete context.failures
-        delete context.time
+        delete context.pass_count
+        delete context.fail_count
         cb(err, context)
       })
     })

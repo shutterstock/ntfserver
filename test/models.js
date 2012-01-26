@@ -71,6 +71,30 @@ exports.suiteGetOrInsert = function(test) {
   })
 }
 
+exports.suiteResultGetOrInsert = function(test) {
+  async.waterfall([
+    // setup
+    function(cb) {
+      helper.setUpFixtures({ agent: true, suite: true }, cb)
+    },
+    // insert
+    function(context, cb) {
+      context.duration = 123
+      context.pass_count = 8
+      context.fail_count = 2
+      context.time = 123456789
+      models.SuiteResult.getOrInsert(context, function(err, id) {
+        if (err) return cb(err)
+        test.equal(id, 1)
+        cb(null, context)
+      })
+    },
+  ], function(err) {
+    if (err) throw err
+    test.done()
+  })
+}
+
 exports.testGetOrInsert = function(test) {
   async.waterfall([
     // setup
@@ -112,14 +136,13 @@ exports.testResultGetOrInsert = function(test) {
   async.waterfall([
     // setup
     function(cb) {
-      helper.setUpFixtures({ agent: true, test: true }, cb)
+      helper.setUpFixtures({ suite_result: true }, cb)
     },
     // insert
     function(context, cb) {
       context.duration = 123
-      context.passes = 8
-      context.failures = 2
-      context.time = 123456789
+      context.pass_count = 3
+      context.fail_count = 1
       models.TestResult.getOrInsert(context, function(err, id) {
         if (err) return cb(err)
         test.equal(id, 1)
