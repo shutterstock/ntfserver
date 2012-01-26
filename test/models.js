@@ -74,7 +74,7 @@ exports.suiteGetOrInsert = function(test) {
 exports.testGetOrInsert = function(test) {
   async.waterfall([
     // setup
-    function(cb) { helper.setUpFixtures({ suite: 1 }, cb) },
+    function(cb) { helper.setUpFixtures({ suite: true }, cb) },
     // insert
     function(context, cb) {
       context.name = 'test'
@@ -112,37 +112,18 @@ exports.testResultGetOrInsert = function(test) {
   async.waterfall([
     // setup
     function(cb) {
-      helper.setUpFixtures({ agent: 1, test: 1 }, cb)
+      helper.setUpFixtures({ agent: true, test: true }, cb)
     },
     // insert
     function(context, cb) {
-      context.name = 'test'
       context.duration = 123
       context.passes = 8
       context.failures = 2
-      context.time = 1327555445
+      context.time = 123456789
       models.TestResult.getOrInsert(context, function(err, id) {
         if (err) return cb(err)
         test.equal(id, 1)
         cb(null, context)
-      })
-    },
-    // get from cache
-    function(context, cb) {
-      models.Test.cache[context.suite_id + '|' + context.name] = 2
-      models.Test.getOrInsert(context, function(err, id) {
-        if (err) return cb(err)
-        test.equal(id, 2)
-        cb(null, context)
-      })
-    },
-    // get from database
-    function(context, cb) {
-      models.Test.cache = {}
-      models.Test.getOrInsert(context, function(err, id) {
-        if (err) return cb(err)
-        test.equal(id, 1)
-        cb()
       })
     },
   ], function(err) {
@@ -180,6 +161,27 @@ exports.assertionGetOrInsert = function(test) {
       })
     },
   ], function(err, result) {
+    test.done()
+  })
+}
+
+exports.assertionResultGetOrInsert = function(test) {
+  async.waterfall([
+    // setup
+    function(cb) {
+      helper.setUpFixtures({ assertion: true, test_result: true }, cb)
+    },
+    // insert
+    function(context, cb) {
+      context.ok = true
+      models.AssertionResult.getOrInsert(context, function(err, id) {
+        if (err) return cb(err)
+        test.equal(id, 1)
+        cb(null, context)
+      })
+    },
+  ], function(err) {
+    if (err) throw err
     test.done()
   })
 }

@@ -17,6 +17,7 @@ exports.setUpSql = function(cb) {
   global.sql = mysql.createClient(global.options.mysql)
 
   var tables = [
+    'assertion_result',
     'assertion',
     'test_result',
     'test',
@@ -51,20 +52,24 @@ exports.setUpFixtures = function(setup, cb) {
     function(cb) { cb(null, {}) }
   ]
 
+  if (setup.assertion_result) setup.assertion = true
+  if (setup.assertion_result) setup.test_result = true
+  if (setup.test_result) setup.agent = true
+  if (setup.test_result) setup.test = true
+  if (setup.test) setup.suite = true
+
   if (setup.agent) {
     work.push(function(context, cb) {
-      context.name = context.agent_name = 'agent'
-      models.Agent.getOrInsert(context, function(err, id) {
+      models.Agent.getOrInsert({ name: 'agent' }, function(err, id) {
         context.agent_id = id
         cb(err, context)
       })
     })
   }
 
-  if (setup.suite || setup.test) {
+  if (setup.suite) {
     work.push(function(context, cb) {
-      context.name = context.suite_name = 'suite'
-      models.Suite.getOrInsert(context, function(err, id) {
+      models.Suite.getOrInsert({ name: 'suite' }, function(err, id) {
         context.suite_id = id
         cb(err, context)
       })
@@ -73,9 +78,47 @@ exports.setUpFixtures = function(setup, cb) {
 
   if (setup.test) {
     work.push(function(context, cb) {
-      context.name = context.test_name = 'test'
+      context.name = 'test'
       models.Test.getOrInsert(context, function(err, id) {
         context.test_id = id
+        delete context.name
+        cb(err, context)
+      })
+    })
+  }
+
+  if (setup.test_result) {
+    work.push(function(context, cb) {
+      context.duration = 123
+      context.passes = 8
+      context.failures = 2
+      context.time = 123456789
+      models.TestResult.getOrInsert(context, function(err, id) {
+        context.test_result_id = id
+        delete context.duration
+        delete context.passes
+        delete context.failures
+        delete context.time
+        cb(err, context)
+      })
+    })
+  }
+
+  if (setup.assertion) {
+    work.push(function(context, cb) {
+      models.Assertion.getOrInsert({ name: 'assertion' }, function(err, id) {
+        context.assertion_id = id
+        cb(err, context)
+      })
+    })
+  }
+
+  if (setup.assertion_result) {
+    work.push(function(context, cb) {
+      context.ok = true
+      models.AssertionResult.getOrInsert(context, function(err, id) {
+        context.assertion_result_id = id
+        delete context.ok
         cb(err, context)
       })
     })
