@@ -4,6 +4,8 @@ var async = require('async')
   , mysql = require('mysql')
 
 exports.setUpSql = function(cb) {
+  models.clearCache()
+
   global.options = {
     mysql: {
       host: '127.0.0.1',
