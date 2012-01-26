@@ -1,5 +1,4 @@
 var async = require('async')
-  , global = require('../lib/ntfserver/global')
   , helper = require('./assets/helper')
   , models = require('../lib/ntfserver/models')
 

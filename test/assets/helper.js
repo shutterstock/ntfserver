@@ -44,11 +44,6 @@ exports.tearDownSql = function(cb) {
   cb()
 }
 
-var fixtureTypes = ['agent', 'suite', 'test']
-
-var fixtureFunctions = {
-}
-
 exports.setUpFixtures = function(setup, cb) {
   var work = [
     function(cb) { cb(null, {}) }
