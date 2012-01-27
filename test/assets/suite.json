@@ -1,26 +1,10 @@
 {
     "agent": "agent",
     "duration": 36,
-    "failures": 0,
+    "failures": 1,
     "name": "www.example.org",
-    "passes": 8,
+    "passes": 7,
     "results": {
-        "http://www.example.org/robots.txt :: get :: robots": {
-            "assertions": [
-                {
-                    "message": "Status code is 200",
-                    "method": "equals",
-                    "ok": true
-                },
-                {
-                    "message": "Content contains \"User-agent\"",
-                    "method": "ok",
-                    "ok": true
-                }
-            ],
-            "duration": 15,
-            "ok": true
-        },
         "http://www.example.org/healthcheck :: get :: healthcheck": {
             "assertions": [
                 {
@@ -42,6 +26,22 @@
             "duration": 10,
             "ok": true
         },
+        "http://www.example.org/robots.txt :: get :: robots": {
+            "assertions": [
+                {
+                    "message": "Status code is 200",
+                    "method": "equals",
+                    "ok": true
+                },
+                {
+                    "message": "Content contains \"User-agent\"",
+                    "method": "ok",
+                    "ok": true
+                }
+            ],
+            "duration": 15,
+            "ok": true
+        },
         "http://www.example.org/stats :: get :: stats": {
             "assertions": [
                 {
@@ -57,11 +57,11 @@
                 {
                     "message": "Stats includes version",
                     "method": "ok",
-                    "ok": true
+                    "ok": false
                 }
             ],
             "duration": 11,
-            "ok": true
+            "ok": false
         }
     },
     "timestamp": 1327609606
