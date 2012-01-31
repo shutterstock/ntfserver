@@ -1,7 +1,15 @@
 ntfserver
 =========
 
-This is a centralized server for collecting ntfd data.
+ntfserver is a centralized server for collecting and displaying
+[ntfd](https://github.com/silas/ntfd) data.
+
+### Requirements
+
+  * [node](http://nodejs.org/) >= 0.4
+  * [npm](http://npmjs.org/)
+  * [mysql](http://www.mysql.com/) >= 5.0.77
+  * [redis](http://redis.io/) >= 2.2.12
 
 ### Developer Tips & Tricks
 
