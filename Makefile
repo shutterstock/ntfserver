@@ -1,6 +1,7 @@
 BOOTSTRAP_VERSION="1.4.0"
 JQUERY_VERSION="1.7.1"
 RICKSHAW_VERSION="master"
+SAMMYJS_VERSION="0.7.1"
 
 TAG=$(shell git tag | sort --version-sort | tail -n 1)
 
@@ -22,6 +23,10 @@ deps:
 	curl -s https://raw.github.com/mbostock/d3/gh-pages/d3.layout.min.js > deps/d3.layout.min.js
 	# get jquery
 	curl -s http://ajax.googleapis.com/ajax/libs/jquery/$(JQUERY_VERSION)/jquery.min.js > deps/jquery.min.js
+	# get sammyjs
+	curl -s https://raw.github.com/quirkey/sammy/v$(SAMMYJS_VERSION)/lib/sammy.js > deps/sammy.js
+	echo >> deps/sammy.js
+	curl -s https://raw.github.com/quirkey/sammy/v$(SAMMYJS_VERSION)/lib/plugins/sammy.template.js >> deps/sammy.js
 	# get rickshaw
 	git clone git://github.com/shutterstock/rickshaw.git deps/rickshaw
 	cd deps/rickshaw && git checkout $(RICKSHAW_VERSION) && make build
@@ -32,6 +37,8 @@ deps:
 	# build js
 	cat deps/jquery.min.js > deps/vendor.js
 	echo >> deps/vendor.js
+	cat deps/sammy.js >> deps/vendor.js
+	echo >> deps/vendor.js
 	cat deps/d3.min.js >> deps/vendor.js
 	echo >> deps/vendor.js
 	cat deps/d3.layout.min.js >> deps/vendor.js
@@ -39,9 +46,9 @@ deps:
 	cat deps/rickshaw/rickshaw.min.js >> deps/vendor.js
 
 dev: deps
-	mkdir static
-	cp deps/vendor.css static/vendor.css
-	cp deps/vendor.js static/vendor.js
+	mkdir -p static
+	cp -f deps/vendor.css static/vendor.css
+	cp -f deps/vendor.js static/vendor.js
 
 clean:
 	rm -fr deps static/vendor.*
