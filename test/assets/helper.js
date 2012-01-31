@@ -84,14 +84,14 @@ exports.setUpFixtures = function(setup, cb) {
   if (setup.suite_result) {
     work.push(function(context, cb) {
       context.duration = 123
-      context.pass_count = 8
-      context.fail_count = 2
+      context.passes = 8
+      context.failures = 2
       context.time = 123456789
       models.SuiteResult.getOrInsert(context, function(err, id) {
         context.suite_result_id = id
         delete context.duration
-        delete context.pass_count
-        delete context.fail_count
+        delete context.passes
+        delete context.failures
         delete context.time
         cb(err, context)
       })
@@ -112,13 +112,22 @@ exports.setUpFixtures = function(setup, cb) {
   if (setup.test_result) {
     work.push(function(context, cb) {
       context.duration = 123
-      context.pass_count = 3
-      context.fail_count = 1
+      context.passes = 3
+      context.failures = 1
       models.TestResult.getOrInsert(context, function(err, id) {
         context.test_result_id = id
         delete context.duration
-        delete context.pass_count
-        delete context.fail_count
+        delete context.passes
+        delete context.failures
+        cb(err, context)
+      })
+    })
+  }
+
+  if (setup.meta) {
+    work.push(function(context, cb) {
+      models.Meta.getOrInsert({ name: 'meta', value: 'value' }, function(err, id) {
+        context.meta_id = id
         cb(err, context)
       })
     })

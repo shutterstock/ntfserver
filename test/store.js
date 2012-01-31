@@ -33,13 +33,12 @@ exports.handleSuite = function(test) {
   })
 
   work.push(function(cb) {
-    global.sql.query('SELECT * FROM suite_result', [],
-    function(err, results) {
+    global.sql.query('SELECT * FROM suite_result', [], function(err, results) {
       if (err) return cb(err)
       test.equal(results.length, 1)
       test.equal(results[0].duration, 36)
-      test.equal(results[0].pass_count, 7)
-      test.equal(results[0].fail_count, 1)
+      test.equal(results[0].passes, 7)
+      test.equal(results[0].failures, 1)
       test.equal(results[0].time, 1327609606)
       cb()
     })
@@ -59,7 +58,7 @@ exports.handleSuite = function(test) {
   work.push(function(cb) {
     global.sql.query(
       'SELECT t.name AS name, tr.duration AS duration,' +
-      '  tr.pass_count AS pass_count, tr.fail_count AS fail_count' +
+      '  tr.passes AS passes, tr.failures AS failures' +
       '  FROM test_result tr' +
       '  LEFT JOIN test t ON ' +
       '  t.test_id = tr.test_id ORDER BY t.name', [],
@@ -67,14 +66,14 @@ exports.handleSuite = function(test) {
       if (err) return cb(err)
       test.equal(results.length, 3)
       test.equal(results[0].duration, 10)
-      test.equal(results[0].pass_count, 3)
-      test.equal(results[0].fail_count, 0)
+      test.equal(results[0].passes, 3)
+      test.equal(results[0].failures, 0)
       test.equal(results[1].duration, 15)
-      test.equal(results[1].pass_count, 2)
-      test.equal(results[1].fail_count, 0)
+      test.equal(results[1].passes, 2)
+      test.equal(results[1].failures, 0)
       test.equal(results[2].duration, 11)
-      test.equal(results[2].pass_count, 2)
-      test.equal(results[2].fail_count, 1)
+      test.equal(results[2].passes, 2)
+      test.equal(results[2].failures, 1)
       cb()
     })
   })
