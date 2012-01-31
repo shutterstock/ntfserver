@@ -155,6 +155,60 @@ exports.testResultGetOrInsert = function(test) {
   })
 }
 
+exports.metaGetOrInsert = function(test) {
+  async.series([
+    // insert
+    function(cb) {
+      models.Meta.getOrInsert({ name: 'meta', value: 'value' }, function(err, id) {
+        if (err) throw err
+        test.equal(id, 1)
+        cb()
+      })
+    },
+    // get from cache
+    function(cb) {
+      models.Meta.cache['meta|value'] = 2
+      models.Meta.getOrInsert({ name: 'meta', value: 'value' }, function(err, id) {
+        if (err) throw err
+        test.equal(id, 2)
+        cb()
+      })
+    },
+    // get from database
+    function(cb) {
+      models.Meta.cache = {}
+      models.Meta.getOrInsert({ name: 'meta', value: 'value' }, function(err, id) {
+        if (err) throw err
+        test.equal(id, 1)
+        cb()
+      })
+    },
+  ], function(err, result) {
+    test.done()
+  })
+}
+
+exports.metaResultGetOrInsert = function(test) {
+  async.waterfall([
+    // setup
+    function(cb) {
+      helper.setUpFixtures({ meta: true, test_result: true }, cb)
+    },
+    // insert
+    function(context, cb) {
+      context.ok = true
+      models.MetaResult.getOrInsert(context, function(err, id) {
+        if (err) return cb(err)
+        test.equal(id, 1)
+        cb(null, context)
+      })
+    },
+  ], function(err) {
+    if (err) throw err
+    test.done()
+  })
+}
+
 exports.assertionGetOrInsert = function(test) {
   async.series([
     // insert

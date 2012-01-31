@@ -124,6 +124,15 @@ exports.setUpFixtures = function(setup, cb) {
     })
   }
 
+  if (setup.meta) {
+    work.push(function(context, cb) {
+      models.Meta.getOrInsert({ name: 'meta', value: 'value' }, function(err, id) {
+        context.meta_id = id
+        cb(err, context)
+      })
+    })
+  }
+
   if (setup.assertion) {
     work.push(function(context, cb) {
       models.Assertion.getOrInsert({ name: 'assertion' }, function(err, id) {
