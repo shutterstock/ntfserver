@@ -5,7 +5,7 @@
     "name": "www.example.org",
     "passes": 7,
     "results": {
-        "http://www.example.org/healthcheck :: get :: healthcheck": {
+        "healthcheck": {
             "assertions": [
                 {
                     "message": "Status code is 200",
@@ -23,10 +23,15 @@
                     "ok": true
                 }
             ],
+            "meta": {
+                "type": "http",
+                "uri": "http://www.example.org/healthcheck",
+                "http_method": "GET"
+            },
             "duration": 10,
             "ok": true
         },
-        "http://www.example.org/robots.txt :: get :: robots": {
+        "robots": {
             "assertions": [
                 {
                     "message": "Status code is 200",
@@ -39,10 +44,15 @@
                     "ok": true
                 }
             ],
+            "meta": {
+                "type": "http",
+                "uri": "http://www.example.org/robots.txt",
+                "http_method": "GET"
+            },
             "duration": 15,
             "ok": true
         },
-        "http://www.example.org/stats :: get :: stats": {
+        "stats": {
             "assertions": [
                 {
                     "message": "Status code is 200",
@@ -60,6 +70,11 @@
                     "ok": false
                 }
             ],
+            "meta": {
+                "type": "http",
+                "uri": "http://www.example.org/stats",
+                "http_method": "GET"
+            },
             "duration": 11,
             "ok": false
         }

@@ -19,6 +19,8 @@ exports.setUpSql = function(cb) {
   var tables = [
     'assertion_result',
     'assertion',
+    'meta_result',
+    'meta',
     'test_result',
     'test',
     'suite_result',

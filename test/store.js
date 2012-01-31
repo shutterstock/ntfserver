@@ -49,9 +49,9 @@ exports.handleSuite = function(test) {
     global.sql.query('SELECT * FROM test ORDER BY name', [], function(err, results) {
       if (err) return cb(err)
       test.equal(results.length, 3)
-      test.equal(results[0].name, 'http://www.example.org/healthcheck :: get :: healthcheck')
-      test.equal(results[1].name, 'http://www.example.org/robots.txt :: get :: robots')
-      test.equal(results[2].name, 'http://www.example.org/stats :: get :: stats')
+      test.equal(results[0].name, 'healthcheck')
+      test.equal(results[1].name, 'robots')
+      test.equal(results[2].name, 'stats')
       cb()
     })
   })
