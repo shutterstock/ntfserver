@@ -2,16 +2,16 @@
   <tr>
     <th>ID</th>
     <th>Agent</th>
-    <th>Passes</th>
-    <th>Failures</th>
+    <th>Pass</th>
+    <th>Fail</th>
     <th>Duration</th>
   </tr>
 {{#suite_result}}
   <tr>
     <td><a href="/#{{url}}">{{id}}</a></td>
     <td><a href="/#{{agent_url}}">{{agent}}</a></td>
-    <td>{{passes}}</td>
-    <td>{{failures}}</td>
+    <td>{{pass}}</td>
+    <td>{{fail}}</td>
     <td>{{duration}}</td>
   </tr>
 {{/suite_result}}

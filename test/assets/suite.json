@@ -1,9 +1,9 @@
 {
     "agent": "agent",
     "duration": 36,
-    "failures": 1,
+    "fail": 1,
     "name": "www.example.org",
-    "passes": 7,
+    "pass": 7,
     "tests": {
         "healthcheck": {
             "assertions": [
@@ -28,8 +28,8 @@
                 "uri": "http://www.example.org/healthcheck",
                 "http_method": "GET"
             },
-            "passes": 3,
-            "failures": 0,
+            "pass": 3,
+            "fail": 0,
             "duration": 10,
             "ok": true
         },
@@ -52,8 +52,8 @@
                 "http_method": "GET"
             },
             "duration": 15,
-            "passes": 2,
-            "failures": 0,
+            "pass": 2,
+            "fail": 0,
             "ok": true
         },
         "stats": {
@@ -79,8 +79,8 @@
                 "uri": "http://www.example.org/stats",
                 "http_method": "GET"
             },
-            "passes": 2,
-            "failures": 1,
+            "pass": 2,
+            "fail": 1,
             "duration": 11,
             "ok": false
         }
