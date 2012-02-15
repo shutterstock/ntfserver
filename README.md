@@ -6,10 +6,10 @@ ntfserver is a centralized server for collecting and displaying
 
 ### Requirements
 
-  * [node](http://nodejs.org/) >= 0.4
+  * [node](http://nodejs.org/)
   * [npm](http://npmjs.org/)
-  * [mysql](http://www.mysql.com/) >= 5.0.77
-  * [redis](http://redis.io/) >= 2.2.12
+  * [mysql](http://www.mysql.com/)
+  * [redis](http://redis.io/)
 
 ### Developer Tips & Tricks
 
