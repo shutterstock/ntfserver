@@ -15,7 +15,8 @@ var app = $.sammy('#main', function() {
   });
 
   this.get('#/agent', function(ctx) {
-    setTitle('Agent');
+    setTitle('Agents');
+
     api.getAgentList(function(err, result) {
       ctx.agent = result;
       ctx.partial('templates/agent_index.html');
@@ -24,7 +25,8 @@ var app = $.sammy('#main', function() {
 
   this.get('#/agent/:agent_name', function(ctx) {
     var agent_name = ctx.params.agent_name;
-    setTitle(agent_name, 'Agent');
+
+    setTitle(agent_name, 'Agents');
 
     api.getAgentList({ agent_name: agent_name }, function(err, result) {
       ctx.agent = result;
@@ -33,7 +35,8 @@ var app = $.sammy('#main', function() {
   })
 
   this.get('#/suite', function(ctx) {
-    setTitle('Suite');
+    setTitle('Suites');
+
     api.getSuiteList(function(err, result) {
       ctx.suite = result;
       ctx.partial('templates/suite_index.html');
@@ -42,7 +45,8 @@ var app = $.sammy('#main', function() {
 
   this.get('#/suite/:suite_name', function(ctx) {
     var suite_name = ctx.params.suite_name;
-    setTitle(suite_name, 'Suite');
+
+    setTitle(suite_name, 'Suites');
 
     async.parallel({
       suite: function(cb) {
@@ -61,14 +65,15 @@ var app = $.sammy('#main', function() {
 
   this.get('#/suite/:suite_name/result', function(ctx) {
     var suite_name = ctx.params.suite_name;
-    setTitle(suite_name, 'Suite');
+
+    setTitle(suite_name, 'Suites');
 
     async.parallel({
       suite: function(cb) {
         api.getSuiteList({ suite_name: suite_name }, cb);
       },
       suite_result: function(cb) {
-        api.getSuiteResultList({ suite_name: suite_name, }, cb);
+        api.getSuiteResultList({ suite_name: suite_name }, cb);
       }
     }, function(err, data) {
       if (!data.suite.length) return this.notFound();
@@ -81,7 +86,8 @@ var app = $.sammy('#main', function() {
   this.get('#/suite/:suite_name/result/:suite_result_id', function(ctx) {
     var suite_name = ctx.params.suite_name;
     var suite_result_id = parseInt(ctx.params.suite_result_id);
-    setTitle('Result ' + suite_result_id, suite_name, 'Suite');
+
+    setTitle('Result ' + suite_result_id, suite_name, 'Suites');
 
     async.parallel({
       suite: function(cb) { api.getSuiteList({ suite_name: suite_name }, cb) },
