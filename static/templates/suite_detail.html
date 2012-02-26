@@ -1,25 +1,32 @@
 {{#suite}}
-<dl>
-  <dt>Name</dt>
-    <dd>{{name}}</dd>
-</dl>
+<h1>{{name}} <small>suite detail</small></h1>
 {{/suite}}
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Agent</th>
-    <th>Pass</th>
-    <th>Fail</th>
-    <th>Duration</th>
-  </tr>
+<h3>Results</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Agent</th>
+      <th>Pass</th>
+      <th>Fail</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
 {{#suite_result}}
-  <tr>
-    <td><a href="/#{{url}}">{{id}}</a></td>
-    <td><a href="/#{{agent_url}}">{{agent}}</a></td>
-    <td>{{pass}}</td>
-    <td>{{fail}}</td>
-    <td>{{duration}}</td>
-  </tr>
+    <tr>
+      <td><a href="/#{{url}}">{{id}}</a></td>
+      <td><a href="/#{{agent_url}}">{{agent}}</a></td>
+      <td>{{pass}}</td>
+      <td>{{fail}}</td>
+      <td>{{duration}}</td>
+    </tr>
 {{/suite_result}}
+  </tbody>
 </table>
+
+{{#suite}}
+<a class="btn" href="#{{url}}/result">More &raquo;</a>
+{{/suite}}

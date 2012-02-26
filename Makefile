@@ -1,9 +1,8 @@
-BOOTSTRAP_VERSION="1.4.0"
+ASYNC_VERSION="master"
 JQUERY_VERSION="1.7.1"
+MUSTACHE_VERSION="0.4.0"
 RICKSHAW_VERSION="master"
 SAMMYJS_VERSION="0.7.1"
-MUSTACHE_VERSION="0.4.0"
-ASYNC_VERSION="master"
 
 TAG=$(shell git tag | sort --version-sort | tail -n 1)
 
@@ -21,10 +20,11 @@ deps:
 	# get async
 	curl -s https://raw.github.com/caolan/async/$(ASYNC_VERSION)/dist/async.min.js > deps/async.min.js
 	# get bootstrap
-	curl -s http://twitter.github.com/bootstrap/$(BOOTSTRAP_VERSION)/bootstrap.min.css > deps/bootstrap.min.css
+	curl -s http://twitter.github.com/bootstrap/assets/bootstrap.zip -o deps/bootstrap.zip
+	cd deps && unzip bootstrap.zip
 	# get d3
-	curl -s https://raw.github.com/mbostock/d3/gh-pages/d3.min.js > deps/d3.min.js
-	curl -s https://raw.github.com/mbostock/d3/gh-pages/d3.layout.min.js > deps/d3.layout.min.js
+	curl -s https://raw.github.com/shutterstock/rickshaw/$(RICKSHAW_VERSION)/vendor/d3.min.js > deps/d3.min.js
+	curl -s https://raw.github.com/shutterstock/rickshaw/$(RICKSHAW_VERSION)/vendor/d3.layout.min.js > deps/d3.layout.min.js
 	# get jquery
 	curl -s http://ajax.googleapis.com/ajax/libs/jquery/$(JQUERY_VERSION)/jquery.min.js > deps/jquery.min.js
 	# get mustache
@@ -39,7 +39,7 @@ deps:
 	# build css
 	cat deps/rickshaw/rickshaw.min.css > deps/vendor.css
 	echo >> deps/vendor.css
-	cat deps/bootstrap.min.css >> deps/vendor.css
+	cat deps/bootstrap/css/bootstrap.min.css >> deps/vendor.css
 	# build js
 	cat deps/jquery.min.js > deps/vendor.js
 	echo >> deps/vendor.js

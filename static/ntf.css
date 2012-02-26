@@ -1,3 +1,13 @@
-#main {
-  margin-top: 60px;
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.sidebar-nav {
+  padding: 9px 0;
+}
+
+dl.detail dt {
+  float: left;
+  width: 100px;
 }
