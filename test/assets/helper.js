@@ -145,9 +145,11 @@ exports.setUpFixtures = function(setup, cb) {
   if (setup.assertion_result) {
     work.push(function(context, cb) {
       context.ok = true
+      context.stack = ''
       models.AssertionResult.getOrInsert(context, function(err, id) {
         context.assertion_result_id = id
         delete context.ok
+        delete context.stack
         cb(err, context)
       })
     })

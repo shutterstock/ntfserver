@@ -251,6 +251,7 @@ exports.assertionResultGetOrInsert = function(test) {
     // insert
     function(context, cb) {
       context.ok = true
+      context.stack = ''
       models.AssertionResult.getOrInsert(context, function(err, id) {
         if (err) return cb(err)
         test.equal(id, 1)
