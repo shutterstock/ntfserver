@@ -2,8 +2,8 @@ var async = require('async')
   , fs = require('fs')
   , path = require('path')
   , helper = require('./assets/helper')
-  , global = require('../lib/ntfserver/global')
-  , store = require('../lib/ntfserver/store')
+  , global = require('../lib/global')
+  , store = require('../lib/store')
 
 exports.setUp = helper.setUpSql
 exports.tearDown = helper.tearDownSql

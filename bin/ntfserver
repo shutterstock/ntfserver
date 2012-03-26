@@ -3,8 +3,8 @@
 var fs = require('fs')
   , iniparser = require('iniparser')
   , path = require('path')
-  , global = require('../lib/ntfserver/global')
-  , ntfserver = require('../lib/ntfserver')
+  , global = require('../lib/global')
+  , ntfserver = require('../lib')
 
 var argv = []
   , configPath = ''

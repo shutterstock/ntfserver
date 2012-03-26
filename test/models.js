@@ -1,6 +1,6 @@
 var async = require('async')
   , helper = require('./assets/helper')
-  , models = require('../lib/ntfserver/models')
+  , models = require('../lib/models')
 
 exports.setUp = helper.setUpSql
 exports.tearDown = helper.tearDownSql

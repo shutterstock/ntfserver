@@ -1,6 +1,6 @@
 var async = require('async')
-  , global = require('../../lib/ntfserver/global')
-  , models = require('../../lib/ntfserver/models')
+  , global = require('../../lib/global')
+  , models = require('../../lib/models')
   , mysql = require('mysql')
 
 exports.setUpSql = function(cb) {

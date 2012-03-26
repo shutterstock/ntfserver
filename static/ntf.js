@@ -4,7 +4,11 @@ var setTitle = function() {
   var args = Array.prototype.slice.call(arguments);
   args.push('ntf');
   $('title').text(args.join(' - '));
-}
+};
+
+var setupPagination = function(ctx, name) {
+  ctx.pagination = { next_url: '', previous_url: '' }
+};
 
 var app = $.sammy('#main', function() {
   this.use('Mustache', 'html');
@@ -65,6 +69,7 @@ var app = $.sammy('#main', function() {
 
   this.get('#/suite/:suite_name/result', function(ctx) {
     var suite_name = ctx.params.suite_name;
+    var page = parseInt(ctx.params.page || 0);
 
     setTitle(suite_name, 'Suites');
 
@@ -73,7 +78,7 @@ var app = $.sammy('#main', function() {
         api.getSuiteList({ suite_name: suite_name }, cb);
       },
       suite_result: function(cb) {
-        api.getSuiteResultList({ suite_name: suite_name }, cb);
+        api.getSuiteResultList({ suite_name: suite_name, page: page }, cb);
       }
     }, function(err, data) {
       if (!data.suite.length) return this.notFound();
