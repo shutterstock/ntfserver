@@ -18,7 +18,7 @@ Post test suite results
     curl \
         -H 'Content-Type: application/json' \
         -d @./test/assets/suite.json \
-        http://127.0.0.1:8000/suite/result
+        http://127.0.0.1:8000/api/suite/result
 
 ### License
 

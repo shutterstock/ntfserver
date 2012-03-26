@@ -2,7 +2,7 @@ var async = require('async')
   , fs = require('fs')
   , path = require('path')
   , helper = require('./assets/helper')
-  , global = require('../lib/global')
+  , shared = require('../lib/shared')
   , store = require('../lib/store')
 
 exports.setUp = helper.setUpSql
@@ -15,7 +15,7 @@ exports.handleSuite = function(test) {
   var work = []
 
   work.push(function(cb) {
-    global.sql.query('SELECT * FROM agent', [], function(err, results) {
+    shared.sql.query('SELECT * FROM agent', [], function(err, results) {
       if (err) return cb(err)
       test.equal(results.length, 1)
       test.equal(results[0].name, 'agent')
@@ -24,7 +24,7 @@ exports.handleSuite = function(test) {
   })
 
   work.push(function(cb) {
-    global.sql.query('SELECT * FROM suite', [], function(err, results) {
+    shared.sql.query('SELECT * FROM suite', [], function(err, results) {
       if (err) return cb(err)
       test.equal(results.length, 1)
       test.equal(results[0].name, 'www.example.org')
@@ -33,7 +33,7 @@ exports.handleSuite = function(test) {
   })
 
   work.push(function(cb) {
-    global.sql.query('SELECT * FROM suite_result', [], function(err, results) {
+    shared.sql.query('SELECT * FROM suite_result', [], function(err, results) {
       if (err) return cb(err)
       test.equal(results.length, 1)
       test.equal(results[0].duration, 36)
@@ -45,7 +45,7 @@ exports.handleSuite = function(test) {
   })
 
   work.push(function(cb) {
-    global.sql.query('SELECT * FROM test ORDER BY name', [], function(err, results) {
+    shared.sql.query('SELECT * FROM test ORDER BY name', [], function(err, results) {
       if (err) return cb(err)
       test.equal(results.length, 3)
       test.equal(results[0].name, 'healthcheck')
@@ -56,7 +56,7 @@ exports.handleSuite = function(test) {
   })
 
   work.push(function(cb) {
-    global.sql.query(
+    shared.sql.query(
       'SELECT t.name AS name, tr.duration AS duration,' +
       '  tr.pass AS pass, tr.fail AS fail' +
       '  FROM test_result tr' +
@@ -79,7 +79,7 @@ exports.handleSuite = function(test) {
   })
 
   work.push(function(cb) {
-    global.sql.query('SELECT * FROM assertion ORDER BY name', [], function(err, results) {
+    shared.sql.query('SELECT * FROM assertion ORDER BY name', [], function(err, results) {
       if (err) return cb(err)
       test.equal(results.length, 5)
       test.equal(results[0].name, 'Content contains "User-agent"')
@@ -92,7 +92,7 @@ exports.handleSuite = function(test) {
   })
 
   work.push(function(cb) {
-    global.sql.query(
+    shared.sql.query(
       'SELECT a.name AS name, ar.ok AS ok' +
       '  FROM ' +
       '    assertion_result ar' +

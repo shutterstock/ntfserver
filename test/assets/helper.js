@@ -1,12 +1,12 @@
 var async = require('async')
-  , global = require('../../lib/global')
+  , shared = require('../../lib/shared')
   , models = require('../../lib/models')
   , mysql = require('mysql')
 
 exports.setUpSql = function(cb) {
   models.clearCache()
 
-  global.options = {
+  shared.options = {
     mysql: {
       host: '127.0.0.1',
       user: 'root',
@@ -14,7 +14,7 @@ exports.setUpSql = function(cb) {
       database: 'ntf_test',
     }
   }
-  global.sql = mysql.createClient(global.options.mysql)
+  shared.sql = mysql.createClient(shared.options.mysql)
 
   var tables = [
     'assertion_result',
@@ -31,11 +31,11 @@ exports.setUpSql = function(cb) {
   work = []
 
   work.push(function(cb) {
-    global.sql.query('DROP TABLE IF EXISTS ' + tables.join(','), cb)
+    shared.sql.query('DROP TABLE IF EXISTS ' + tables.join(','), cb)
   })
 
   work.push(function(cb) {
-    global.setupSql(global.options, cb)
+    shared.setupSql(shared.options, cb)
   })
 
   async.series(work, function(err) {
@@ -45,8 +45,8 @@ exports.setUpSql = function(cb) {
 }
 
 exports.tearDownSql = function(cb) {
-  try { global.sql.destroy() } catch(err) {}
-  global.sql = null
+  try { shared.sql.destroy() } catch(err) {}
+  shared.sql = null
   cb()
 }
 

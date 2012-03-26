@@ -3,7 +3,7 @@
 var fs = require('fs')
   , iniparser = require('iniparser')
   , path = require('path')
-  , global = require('../lib/global')
+  , shared = require('../lib/shared')
   , ntfserver = require('../lib')
 
 var argv = []
@@ -50,4 +50,4 @@ if (configPath) {
 
 var server = ntfserver.createServer(options)
 
-server.listen(global.options.http.port)
+server.listen(shared.options.http.port)
