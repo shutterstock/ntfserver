@@ -6,7 +6,6 @@
     <link href="/vendor.css" rel="stylesheet" type="text/css">
     <script src="/vendor.js" type="text/javascript"></script>
     <script src="/socket.io/socket.io.js" type="text/javascript"></script>
-    <script src="/dnode.js" type="text/javascript"></script>
     <link href="/ntf.css" rel="stylesheet" type="text/css">
     <script src="/ntf.js" type="text/javascript"></script>
   </head>
@@ -14,10 +13,26 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="brand" href="/#/">Network Testing</a>
+          <a class="brand" href="/">Network Testing</a>
         </div>
       </div>
     </div>
-    <%- body %>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Details</li>
+              <li><a href="/suite">Suites</a></li>
+              <li><a href="/agent">Agents</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="span9">
+          <%- body %>
+        </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

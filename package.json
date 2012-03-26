@@ -5,9 +5,8 @@
   "engines": { "node": ">= 0.4" },
   "dependencies": {
     "async": ">= 0.1.10",
-    "dnode": ">= 0.9.6",
     "ejs": ">= 0.6.1",
-    "express": ">= 2.4.7",
+    "express": "= 2.4.7",
     "iniparser": ">= 1.0.5",
     "mysql": ">= 0.9.5",
     "redis": ">= 0.6.7"

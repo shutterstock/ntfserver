@@ -1,8 +1,6 @@
-ASYNC_VERSION="master"
 JQUERY_VERSION="1.7.1"
 MUSTACHE_VERSION="0.4.0"
 RICKSHAW_VERSION="master"
-SAMMYJS_VERSION="0.7.1"
 
 TAG=$(shell git tag | sort --version-sort | tail -n 1)
 
@@ -17,8 +15,6 @@ build: clean deps
 
 deps:
 	mkdir -p deps
-	# get async
-	curl -s https://raw.github.com/caolan/async/$(ASYNC_VERSION)/dist/async.min.js > deps/async.min.js
 	# get bootstrap
 	curl -s http://twitter.github.com/bootstrap/assets/bootstrap.zip -o deps/bootstrap.zip
 	cd deps && unzip bootstrap.zip
@@ -27,12 +23,6 @@ deps:
 	curl -s https://raw.github.com/shutterstock/rickshaw/$(RICKSHAW_VERSION)/vendor/d3.layout.min.js > deps/d3.layout.min.js
 	# get jquery
 	curl -s http://ajax.googleapis.com/ajax/libs/jquery/$(JQUERY_VERSION)/jquery.min.js > deps/jquery.min.js
-	# get mustache
-	curl -s https://raw.github.com/janl/mustache.js/$(MUSTACHE_VERSION)/mustache.js > deps/mustache.js
-	# get sammyjs
-	curl -s https://raw.github.com/quirkey/sammy/v$(SAMMYJS_VERSION)/lib/sammy.js > deps/sammy.js
-	echo >> deps/sammy.js
-	curl -s https://raw.github.com/quirkey/sammy/v$(SAMMYJS_VERSION)/lib/plugins/sammy.mustache.js >> deps/sammy.js
 	# get rickshaw
 	git clone git://github.com/shutterstock/rickshaw.git deps/rickshaw
 	cd deps/rickshaw && git checkout $(RICKSHAW_VERSION) && make build
@@ -42,12 +32,6 @@ deps:
 	cat deps/bootstrap/css/bootstrap.min.css >> deps/vendor.css
 	# build js
 	cat deps/jquery.min.js > deps/vendor.js
-	echo >> deps/vendor.js
-	cat deps/async.min.js >> deps/vendor.js
-	echo >> deps/vendor.js
-	cat deps/mustache.js >> deps/vendor.js
-	echo >> deps/vendor.js
-	cat deps/sammy.js >> deps/vendor.js
 	echo >> deps/vendor.js
 	cat deps/d3.min.js >> deps/vendor.js
 	echo >> deps/vendor.js
