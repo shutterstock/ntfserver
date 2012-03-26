@@ -19,6 +19,6 @@
     "type": "git",
     "url": "http://github.com/silas/ntfserver.git"
   },
-  "bugs" : { "url" : "http://github.com/silas/ntfserver/issues" },
+  "bugs": { "url": "http://github.com/silas/ntfserver/issues" },
   "main": "lib/ntfserver"
 }
