@@ -3,5 +3,7 @@
 {% block head_title %}{{ suite.name }} - {% parent %}{% endblock %}
 
 {% block content %}
-<h1>{{ suite.name }}</h1>
+<div class="page-header"><h1>{{ suite.name }}</h1></div>
+
+<p><a class="btn" href="{{ suite.results_url }}">Results &raquo;</a></p>
 {% endblock %}
