@@ -15,14 +15,14 @@ build: clean deps
 
 deps:
 	mkdir -p deps
+	# get jquery
+	curl -s http://ajax.googleapis.com/ajax/libs/jquery/$(JQUERY_VERSION)/jquery.min.js > deps/jquery.min.js
 	# get bootstrap
 	curl -s http://twitter.github.com/bootstrap/assets/bootstrap.zip -o deps/bootstrap.zip
 	cd deps && unzip bootstrap.zip
 	# get d3
 	curl -s https://raw.github.com/shutterstock/rickshaw/$(RICKSHAW_VERSION)/vendor/d3.min.js > deps/d3.min.js
 	curl -s https://raw.github.com/shutterstock/rickshaw/$(RICKSHAW_VERSION)/vendor/d3.layout.min.js > deps/d3.layout.min.js
-	# get jquery
-	curl -s http://ajax.googleapis.com/ajax/libs/jquery/$(JQUERY_VERSION)/jquery.min.js > deps/jquery.min.js
 	# get rickshaw
 	git clone git://github.com/shutterstock/rickshaw.git deps/rickshaw
 	cd deps/rickshaw && git checkout $(RICKSHAW_VERSION) && make build
@@ -32,6 +32,8 @@ deps:
 	cat deps/bootstrap/css/bootstrap.min.css >> deps/vendor.css
 	# build js
 	cat deps/jquery.min.js > deps/vendor.js
+	echo >> deps/vendor.js
+	cat deps/bootstrap/js/bootstrap.min.js >> deps/vendor.js
 	echo >> deps/vendor.js
 	cat deps/d3.min.js >> deps/vendor.js
 	echo >> deps/vendor.js

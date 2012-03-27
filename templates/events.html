@@ -2,4 +2,21 @@
 
 {% block head_title %}Events - {% parent %}{% endblock %}
 
-{% block content %}events{% endblock %}
+{% block content %}
+<table class="table" id="events">
+  <thead>
+    <tr>
+      <th>Summary</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for event in events %}
+    <tr>
+      <td><a href="{{ event.url }}">{{ event.summary }}</a></td>
+      <td>{{ event.time|age }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
