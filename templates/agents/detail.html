@@ -1,0 +1,7 @@
+{% extends "agents/index.html" %}
+
+{% block head_title %}{{ agent.name }} - {% parent %}{% endblock %}
+
+{% block content %}
+<h1>{{ agent.name }}</h1>
+{% endblock %}

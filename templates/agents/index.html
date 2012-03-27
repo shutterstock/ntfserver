@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block head_title %}Agents - {% parent %}{% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for agent in agents %}
+    <tr>
+      <td><a href="{{ agent.url }}">{{ agent.name }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
