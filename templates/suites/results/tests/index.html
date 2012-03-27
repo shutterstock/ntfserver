@@ -1,0 +1,30 @@
+{% extends "suites/results/detail.html" %}
+
+{% block head_title %}Tests - {% parent %}{% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Agent</th>
+      <th>Pass</th>
+      <th>Fail</th>
+      <th>Duration</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for test_result in test_results %}
+    <tr>
+      <td><a href="{{ test_result.url }}">{{ test_result.id }}</a></td>
+      <td><a href="{{ test_result.agent_url }}">{{ test_result.agent }}</a></td>
+      <td>{{ test_result.pass }}</td>
+      <td>{{ test_result.fail }}</td>
+      <td>{{ test_result.duration }}</td>
+      <td>{{ test_result.time|age }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

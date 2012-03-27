@@ -1,7 +1,9 @@
 {% extends "suites/results/index.html" %}
 
-{% block head_title %}{{ result.id }} - {% parent %}{% endblock %}
+{% block head_title %}{{ suite_result.id }} - {% parent %}{% endblock %}
 
 {% block content %}
-<div class="page-header"><h1>{{ result.id }}</h1></div>
+<div class="page-header"><h1>{{ suite_result.id }}</h1></div>
+
+<p><a class="btn" href="{{ suite_result.tests_url }}">Tests results &raquo;</a></p>
 {% endblock %}

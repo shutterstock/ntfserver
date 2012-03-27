@@ -15,14 +15,14 @@
     </tr>
   </thead>
   <tbody>
-    {% for result in results %}
+    {% for suite_result in suite_results %}
     <tr>
-      <td><a href="{{ result.url }}">{{ result.id }}</a></td>
-      <td><a href="{{ result.agent_url }}">{{ result.agent }}</a></td>
-      <td>{{ result.pass }}</td>
-      <td>{{ result.fail }}</td>
-      <td>{{ result.duration }}</td>
-      <td>{{ result.time|age }}</td>
+      <td><a href="{{ suite_result.url }}">{{ suite_result.id }}</a></td>
+      <td><a href="{{ suite_result.agent_url }}">{{ suite_result.agent }}</a></td>
+      <td>{{ suite_result.pass }}</td>
+      <td>{{ suite_result.fail }}</td>
+      <td>{{ suite_result.duration }}</td>
+      <td>{{ suite_result.time|age }}</td>
     </tr>
     {% endfor %}
   </tbody>

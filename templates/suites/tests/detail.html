@@ -1,0 +1,7 @@
+{% extends "suites/tests/index.html" %}
+
+{% block head_title %}{{ test.name }} - {% parent %}{% endblock %}
+
+{% block content %}
+<div class="page-header"><h1>{{ test.name }}</h1></div>
+{% endblock %}

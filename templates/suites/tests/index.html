@@ -1,0 +1,20 @@
+{% extends "suites/detail.html" %}
+
+{% block head_title %}Tests - {% parent %}{% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for test in tests %}
+    <tr>
+      <td><a href="{{ test.url }}">{{ test.name }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
