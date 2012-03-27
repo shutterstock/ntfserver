@@ -1,0 +1,7 @@
+{% extends "suites/index.html" %}
+
+{% block head_title %}{{ suite.name }} - {% parent %}{% endblock %}
+
+{% block content %}
+<h1>{{ suite.name }}</h1>
+{% endblock %}
