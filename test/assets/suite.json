@@ -8,17 +8,17 @@
         "healthcheck": {
             "assertions": [
                 {
-                    "name": "Status code is 200",
+                    "message": "Status code is 200",
                     "method": "equals",
                     "ok": true
                 },
                 {
-                    "name": "Content is JSON",
+                    "message": "Content is JSON",
                     "method": "ok",
                     "ok": true
                 },
                 {
-                    "name": "Healthcheck is active",
+                    "message": "Healthcheck is active",
                     "method": "ok",
                     "ok": true
                 }
@@ -36,12 +36,12 @@
         "robots": {
             "assertions": [
                 {
-                    "name": "Status code is 200",
+                    "message": "Status code is 200",
                     "method": "equals",
                     "ok": true
                 },
                 {
-                    "name": "Content contains \"User-agent\"",
+                    "message": "Content contains \"User-agent\"",
                     "method": "ok",
                     "ok": true
                 }
@@ -59,17 +59,17 @@
         "stats": {
             "assertions": [
                 {
-                    "name": "Status code is 200",
+                    "message": "Status code is 200",
                     "method": "equals",
                     "ok": true
                 },
                 {
-                    "name": "Content is JSON",
+                    "message": "Content is JSON",
                     "method": "ok",
                     "ok": true
                 },
                 {
-                    "name": "Stats includes version",
+                    "message": "Stats includes version",
                     "method": "ok",
                     "ok": false
                 }

@@ -18,7 +18,7 @@
       <td><a href="{{ assertion_result.url }}">{{ assertion_result.id }}</a></td>
       <td><a href="{{ assertion_result.agent_url }}">{{ assertion_result.agent }}</a></td>
       <td><span class="label label-{% if assertion_result.ok %}success{% else %}important{% endif %}">{% if assertion_result.ok %}pass{% else %}fail{% endif %}</span></td>
-      <td>{{ assertion_result.name }}</td>
+      <td>{{ assertion_result.message }}</td>
       <td>{{ assertion_result.time|age }}</td>
     </tr>
     {% endfor %}

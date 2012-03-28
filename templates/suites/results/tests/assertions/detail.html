@@ -5,7 +5,7 @@
 {% block content %}
 <div class="page-header"><h1>{{ assertion_result.id }} <span class="label label-{% if assertion_result.ok %}success{% else %}important{% endif %}">{% if assertion_result.ok %}pass{% else %}fail{% endif %}</span></h1></div>
 
-<p>{{ assertion_result.name }}</p>
+<p>{{ assertion_result.message }}</p>
 
 {% if assertion_result.stack %}
 <h3>Stack</h3>

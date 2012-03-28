@@ -135,7 +135,7 @@ exports.setUpFixtures = function(setup, cb) {
 
   if (setup.assertion) {
     work.push(function(context, cb) {
-      models.Assertion.getOrInsert({ name: 'assertion' }, function(err, id) {
+      models.Assertion.getOrInsert({ message: 'assertion' }, function(err, id) {
         context.assertion_id = id
         cb(err, context)
       })

@@ -79,21 +79,21 @@ exports.handleSuite = function(test) {
   })
 
   work.push(function(cb) {
-    shared.sql.query('SELECT * FROM assertion ORDER BY name', [], function(err, results) {
+    shared.sql.query('SELECT * FROM assertion ORDER BY message', [], function(err, results) {
       if (err) return cb(err)
       test.equal(results.length, 5)
-      test.equal(results[0].name, 'Content contains "User-agent"')
-      test.equal(results[1].name, 'Content is JSON')
-      test.equal(results[2].name, 'Healthcheck is active')
-      test.equal(results[3].name, 'Stats includes version')
-      test.equal(results[4].name, 'Status code is 200')
+      test.equal(results[0].message, 'Content contains "User-agent"')
+      test.equal(results[1].message, 'Content is JSON')
+      test.equal(results[2].message, 'Healthcheck is active')
+      test.equal(results[3].message, 'Stats includes version')
+      test.equal(results[4].message, 'Status code is 200')
       cb()
     })
   })
 
   work.push(function(cb) {
     shared.sql.query(
-      'SELECT a.name AS name, ar.ok AS ok' +
+      'SELECT a.message AS message, ar.ok AS ok' +
       '  FROM ' +
       '    assertion_result ar' +
       '  LEFT JOIN assertion a ON ' +
@@ -102,25 +102,25 @@ exports.handleSuite = function(test) {
       '    ar.test_result_id = tr.test_result_id' +
       '  LEFT JOIN test t ON ' +
       '    t.test_id = tr.test_id' +
-      '  ORDER BY t.name, a.name', [],
+      '  ORDER BY t.name, a.message', [],
     function(err, results) {
       if (err) return cb(err)
       test.equal(results.length, 8)
-      test.equal(results[0].name, 'Content is JSON')
+      test.equal(results[0].message, 'Content is JSON')
       test.equal(results[0].ok, 1)
-      test.equal(results[1].name, 'Healthcheck is active')
+      test.equal(results[1].message, 'Healthcheck is active')
       test.equal(results[1].ok, 1)
-      test.equal(results[2].name, 'Status code is 200')
+      test.equal(results[2].message, 'Status code is 200')
       test.equal(results[2].ok, 1)
-      test.equal(results[3].name, 'Content contains "User-agent"')
+      test.equal(results[3].message, 'Content contains "User-agent"')
       test.equal(results[3].ok, 1)
-      test.equal(results[4].name, 'Status code is 200')
+      test.equal(results[4].message, 'Status code is 200')
       test.equal(results[4].ok, 1)
-      test.equal(results[5].name, 'Content is JSON')
+      test.equal(results[5].message, 'Content is JSON')
       test.equal(results[5].ok, 1)
-      test.equal(results[6].name, 'Stats includes version')
+      test.equal(results[6].message, 'Stats includes version')
       test.equal(results[6].ok, 0)
-      test.equal(results[7].name, 'Status code is 200')
+      test.equal(results[7].message, 'Status code is 200')
       test.equal(results[7].ok, 1)
       cb()
     })
