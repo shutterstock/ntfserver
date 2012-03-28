@@ -11,3 +11,34 @@ dl.detail dt {
   float: left;
   width: 100px;
 }
+
+div.frontpage-header {
+  text-align: center;
+}
+
+div.frontpage-header h1 {
+  font-size: 50px;
+}
+
+a.frontpage div {
+  margin: 0;
+  color: #fff;
+  font-size: 100px;
+  font-weight: bold;
+  line-height: 100px;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  padding: 100px;
+  text-align: center;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+}
+
+a.frontpage:hover {
+  text-decoration: none;
+}
+
+#events tr:first-child td {
+  border-top: none;
+}

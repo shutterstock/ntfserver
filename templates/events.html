@@ -4,17 +4,16 @@
 
 {% block content %}
 <table class="table" id="events">
-  <thead>
-    <tr>
-      <th>Summary</th>
-      <th>Time</th>
-    </tr>
-  </thead>
   <tbody>
     {% for event in events %}
     <tr>
+      <td><span class="label label-important">{{ event.fail }}</span></td>
       <td><a href="{{ event.url }}">{{ event.summary }}</a></td>
       <td>{{ event.time|age }}</td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="3">No events</td>
     </tr>
     {% endfor %}
   </tbody>
