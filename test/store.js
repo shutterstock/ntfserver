@@ -39,7 +39,7 @@ exports.handleSuite = function(test) {
       test.equal(results[0].duration, 36)
       test.equal(results[0].pass, 7)
       test.equal(results[0].fail, 1)
-      test.equal(results[0].time, 1327609606)
+      test.equal(results[0].time, 1327609606721)
       cb()
     })
   })
