@@ -6,6 +6,7 @@
   "dependencies": {
     "async": ">= 0.1.10",
     "express": ">= 2.4.7",
+    "commander": ">= 0.5.2",
     "iniparser": ">= 1.0.5",
     "mysql": ">= 0.9.5",
     "redis": ">= 0.6.7",

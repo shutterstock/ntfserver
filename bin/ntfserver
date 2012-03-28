@@ -3,49 +3,30 @@
 var fs = require('fs')
   , iniparser = require('iniparser')
   , path = require('path')
+  , program = require('commander')
   , shared = require('../lib/shared')
   , ntfserver = require('../lib')
-
-var argv = []
-  , configPath = ''
   , options = {}
 
-for (var i in process.argv) {
-  var v = process.argv[i]
-    , hasNext = i+2 <= process.argv.length
+program
+  .version(ntfserver.version)
+  .option('-c, --config-file <path>', 'Configuration path')
+  .parse(process.argv)
 
-  switch (v) {
-    case '-c':
-      if (process.argv.length < i+2) {
-        configPath = process.argv[i+1]
-      } else {
-        console.log('Configuration path required')
-        process.exit(1)
-      }
-      break
-    case '-v':
-      console.log(ntfserver.version)
-      process.exit(0)
-      break
-    default:
-      argv.push(v)
-  }
-}
-
-if (configPath) {
+if (program.configFile) {
   try {
-    var stat = fs.lstatSync(configPath)
+    var stat = fs.lstatSync(program.configFile)
   } catch(err) {
-    console.log('Configuration file not found: ' + configPath)
+    console.log('Configuration file not found: ' + program.configFile)
     process.exit(1)
   }
 
   if (!stat.isFile()) {
-    console.log('Configuration path is not a file: ' + configPath)
+    console.log('Configuration path is not a file: ' + program.configFile)
     process.exit(1)
   }
 
-  options = iniparser.parseSync(configPath)
+  options = iniparser.parseSync(program.configFile)
 }
 
 var server = ntfserver.createServer(options)
