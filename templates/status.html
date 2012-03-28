@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head_title %}Status - {% parent %}{% endblock %}
+
+{% block content %}
+<table class="table" id="status">
+  <thead>
+    <tr>
+      <th>Pass</th>
+      <th>Fail</th>
+      <th>Result</th>
+      <th>Suite</th>
+      <th>Agent</th>
+      <th>Duration (ms)</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for result in results %}
+    <tr>
+      <td class="min"><span{% if result.ok %} class="label label-success"{% endif %}>{{ result.pass }}</span></td>
+      <td class="min"><span{% if not result.ok %} class="label label-important"{% endif %}>{{ result.fail }}</span></td>
+      <td class="min"><a href="{{ result.url }}">{{ result.id }}</a></td>
+      <td><a href="{{ result.suite_url }}">{{ result.suite }}</a></td>
+      <td><a href="{{ result.agent_url }}">{{ result.agent }}</a></td>
+      <td>{{ result.duration }}</td>
+      <td>{{ result.time|age }}</td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="3">No data</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -42,3 +42,8 @@ a.frontpage:hover {
 #events tr:first-child td {
   border-top: none;
 }
+
+.min {
+  width: 1px;
+  white-space: nowrap;
+}
