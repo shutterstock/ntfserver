@@ -7,9 +7,8 @@
 
 <p>{{ assertion_result.message }}</p>
 
-{% if assertion_result.stack %}
-<h3>Stack</h3>
-<pre>{{ assertion_result.stack }}</pre>
+{% if assertion_result.stack_trace %}
+<pre>{{ assertion_result.stack_trace }}</pre>
 {% endif %}
 
 {% endblock %}

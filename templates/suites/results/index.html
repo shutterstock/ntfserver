@@ -19,8 +19,8 @@
     <tr>
       <td><a href="{{ suite_result.url }}">{{ suite_result.id }}</a></td>
       <td><a href="{{ suite_result.agent_url }}">{{ suite_result.agent }}</a></td>
-      <td>{{ suite_result.pass }}</td>
-      <td>{{ suite_result.fail }}</td>
+      <td><span{% if suite_result.ok %} class="label label-success"{% endif %}>{{ suite_result.pass }}</span></td>
+      <td><span{% if not suite_result.ok %} class="label label-important"{% endif %}>{{ suite_result.fail }}</span></td>
       <td>{{ suite_result.duration }}</td>
       <td>{{ suite_result.time|age }}</td>
     </tr>

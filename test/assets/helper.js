@@ -19,6 +19,7 @@ exports.setUpSql = function(cb) {
   var tables = [
     'assertion_result',
     'assertion',
+    'stack_trace',
     'meta_result',
     'meta',
     'test_result',
@@ -56,6 +57,7 @@ exports.setUpFixtures = function(setup, cb) {
   ]
 
   if (setup.assertion_result) setup.assertion = true
+  if (setup.assertion_result) setup.stack_trace = true
   if (setup.assertion_result) setup.test_result = true
   if (setup.test) setup.suite = true
   if (setup.test_result) setup.suite_result = true
@@ -133,6 +135,15 @@ exports.setUpFixtures = function(setup, cb) {
     })
   }
 
+  if (setup.stack_trace) {
+    work.push(function(context, cb) {
+      models.StackTrace.getOrInsert({ value: 'stack_trace' }, function(err, id) {
+        context.stack_trace_id = id
+        cb(err, context)
+      })
+    })
+  }
+
   if (setup.assertion) {
     work.push(function(context, cb) {
       models.Assertion.getOrInsert({ message: 'assertion' }, function(err, id) {
@@ -145,11 +156,9 @@ exports.setUpFixtures = function(setup, cb) {
   if (setup.assertion_result) {
     work.push(function(context, cb) {
       context.ok = true
-      context.stack = ''
       models.AssertionResult.getOrInsert(context, function(err, id) {
         context.assertion_result_id = id
         delete context.ok
-        delete context.stack
         cb(err, context)
       })
     })

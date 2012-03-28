@@ -209,6 +209,39 @@ exports.metaResultGetOrInsert = function(test) {
   })
 }
 
+exports.stackTraceGetOrInsert = function(test) {
+  async.series([
+    // insert
+    function(cb) {
+      models.StackTrace.getOrInsert({ value: 'value' }, function(err, id) {
+        if (err) throw err
+        test.equal(id, 1)
+        cb()
+      })
+    },
+    // get from cache
+    function(cb) {
+      models.StackTrace.cache['value'] = 2
+      models.StackTrace.getOrInsert({ value: 'value' }, function(err, id) {
+        if (err) throw err
+        test.equal(id, 2)
+        cb()
+      })
+    },
+    // get from database
+    function(cb) {
+      models.StackTrace.cache = {}
+      models.StackTrace.getOrInsert({ value: 'value' }, function(err, id) {
+        if (err) throw err
+        test.equal(id, 1)
+        cb()
+      })
+    },
+  ], function(err, result) {
+    test.done()
+  })
+}
+
 exports.assertionGetOrInsert = function(test) {
   async.series([
     // insert
@@ -246,12 +279,11 @@ exports.assertionResultGetOrInsert = function(test) {
   async.waterfall([
     // setup
     function(cb) {
-      helper.setUpFixtures({ assertion: true, test_result: true }, cb)
+      helper.setUpFixtures({ assertion: true, stack_trace: true, test_result: true }, cb)
     },
     // insert
     function(context, cb) {
       context.ok = true
-      context.stack = ''
       models.AssertionResult.getOrInsert(context, function(err, id) {
         if (err) return cb(err)
         test.equal(id, 1)
