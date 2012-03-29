@@ -6,6 +6,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Test</th>
       <th>Agent</th>
       <th>Pass</th>
@@ -18,13 +19,14 @@
   <tbody>
     {% for test_result in test_results %}
     <tr>
-      <td><a href="{{ test_result.url }}">{{ test_result.test }}</a></td>
+      <td><a href="{{ test_result.url }}">{{ test_result.id }}</a></td>
+      <td><a href="{{ test_result.test_url }}">{{ test_result.test }}</a></td>
       <td><a href="{{ test_result.agent_url }}">{{ test_result.agent }}</a></td>
       <td><span{% if test_result.ok %} class="label label-success"{% endif %}>{{ test_result.pass }}</span></td>
       <td><span{% if not test_result.ok %} class="label label-important"{% endif %}>{{ test_result.fail }}</span></td>
       <td>{{ test_result.duration }}</td>
       <td>{{ test_result.time|age }}</td>
-      <td><a class="btn" href="{{ test_result.assertions_url }}">Assertions</a></td>
+      <td><a class="btn btn-mini" href="{{ test_result.assertions_url }}">Assertions</a></td>
     </tr>
     {% endfor %}
   </tbody>

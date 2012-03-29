@@ -12,6 +12,7 @@
       <th>Fail</th>
       <th>Duration (ms)</th>
       <th>Time</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@
       <td><span{% if not suite_result.ok %} class="label label-important"{% endif %}>{{ suite_result.fail }}</span></td>
       <td>{{ suite_result.duration }}</td>
       <td>{{ suite_result.time|age }}</td>
+      <td><a class="btn btn-mini" href="{{ suite_result.tests_url }}">Tests</a></td>
     </tr>
     {% endfor %}
   </tbody>
