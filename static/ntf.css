@@ -47,3 +47,7 @@ a.frontpage:hover {
   width: 1px;
   white-space: nowrap;
 }
+
+#status-pass {
+  border-top: none;
+}
