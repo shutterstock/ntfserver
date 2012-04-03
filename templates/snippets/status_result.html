@@ -1,0 +1,9 @@
+<tr id="status-event-{{ result.suite|suite_to_safe }}">
+  <td class="min"><span{% if result.ok %} class="label label-success"{% endif %}>{{ result.pass }}</span></td>
+  <td class="min"><span{% if not result.ok %} class="label label-important"{% endif %}>{{ result.fail }}</span></td>
+  <td><a href="{{ result.suite_url }}">{{ result.suite }}</a></td>
+  <td><a href="{{ result.agent_url }}">{{ result.agent }}</a></td>
+  <td>{{ result.duration }}</td>
+  <td class="age" time="{{ result.time|time }}">{{ result.time|age }}</td>
+  <td><a class="btn btn-mini" href="{{ result.suite_result_url }}">Detail</a></td>
+</tr>

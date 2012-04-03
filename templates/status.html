@@ -15,22 +15,19 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="status-fail">
     {% for result in results %}
-    <tr>
-      <td class="min"><span{% if result.ok %} class="label label-success"{% endif %}>{{ result.pass }}</span></td>
-      <td class="min"><span{% if not result.ok %} class="label label-important"{% endif %}>{{ result.fail }}</span></td>
-      <td><a href="{{ result.suite_url }}">{{ result.suite }}</a></td>
-      <td><a href="{{ result.agent_url }}">{{ result.agent }}</a></td>
-      <td>{{ result.duration }}</td>
-      <td>{{ result.time|age }}</td>
-      <td><a class="btn btn-mini" href="{{ result.suite_result_url }}">Detail</a></td>
-    </tr>
-    {% else %}
-    <tr>
-      <td colspan="7">No data</td>
-    </tr>
+      {% if result.ok and not ok %}
+        {% set ok = result.ok %}
+  </tbody>
+  <tbody id="status-pass">
+      {% endif %}
+      {% include "snippets/status_result.html" %}
     {% endfor %}
+    {% if not ok %}
+  </tbody>
+  <tbody id="status-pass">
+    {% endif %}
   </tbody>
 </table>
 {% endblock %}
