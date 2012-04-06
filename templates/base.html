@@ -34,6 +34,6 @@
         <div class="span12">{% block content %}{% endblock %}</div>
       </div>
     </div>
-    <script>$(document).ready({{ load }});</script>
+    <script>$(document).ready(function() {main({{ load }})})</script>
   </body>
 </html>

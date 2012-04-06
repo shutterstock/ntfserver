@@ -7,10 +7,10 @@ function handleStatus() {
     $('.age').each(function() {
       var el = $(this);
       var d = new Date(parseInt(el.attr('time')));
-      el.text(window.shared.filters.age(d));
+      el.text(shared.filters.age(d));
     });
   });
-  var render = swig.compile(window.shared.template['status_result.html']);
+  var render = swig.compile(shared.template['status_result.html']);
   var events = createEvents();
   events.on('suite', function(data) {
     $('#status-event-' + data.suite.replace('.', '-')).remove();
@@ -21,6 +21,6 @@ function handleStatus() {
 }
 
 function main(load) {
-  swig.init({ filters: window.shared.filters });
+  swig.init({ filters: shared.filters });
   if (load) load();
 }
