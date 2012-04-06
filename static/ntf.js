@@ -1,9 +1,8 @@
-function setupEvents() {
-  window.app.io = io.connect('/events');
+function createEvents() {
+  return io.connect('/events');
 }
 
 function handleStatus() {
-  setupEvents();
   setInterval(function() {
     $('.age').each(function() {
       var el = $(this);
@@ -12,7 +11,8 @@ function handleStatus() {
     });
   });
   var render = swig.compile(window.shared.template['status_result.html']);
-  window.app.io.on('suite', function(data) {
+  var events = createEvents();
+  events.on('suite', function(data) {
     $('#status-event-' + data.suite.replace('.', '-')).remove();
     data.time = new Date(data.time);
     var html = render({ result: data });
@@ -20,16 +20,7 @@ function handleStatus() {
   });
 }
 
-function main() {
-  window.app = {};
+function main(load) {
   swig.init({ filters: window.shared.filters });
-  switch (window.location.pathname) {
-    case '/status':
-      handleStatus();
-      break;
-  }
+  if (load) load();
 }
-
-$(document).ready(function() {
-  main();
-});
