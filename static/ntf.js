@@ -13,7 +13,7 @@ function handleStatus() {
   var render = swig.compile(shared.template['status_result.html']);
   var events = createEvents();
   events.on('suite', function(data) {
-    $('#status-event-' + data.suite.replace('.', '-')).remove();
+    $('#status-event-' + data.suite.replace(/\./g, '-')).remove();
     data.time = new Date(data.time);
     var html = render({ result: data });
     $('#status-' + (data.ok ? 'pass' : 'fail')).prepend(html);
