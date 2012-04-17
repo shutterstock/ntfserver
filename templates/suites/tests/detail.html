@@ -4,11 +4,13 @@
 
 {% block content %}
 <div class="page-header"><h1>{{ test.name }}</h1></div>
+
 <div id="chart"></div>
+
 <script>
 new Rickshaw.Graph.JSONP({
   element: document.querySelector('#chart'),
-  dataURL: '/reports/test-duration?test_id=' + {{ test.id }},
+  dataURL: '{{ test.report_url|raw }}',
   width: 800,
   height: 300,
   interpolation: 'step-after',
