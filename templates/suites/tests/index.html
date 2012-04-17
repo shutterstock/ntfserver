@@ -3,29 +3,16 @@
 {% block head_title %}Tests - {% parent %}{% endblock %}
 
 {% block content %}
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for test in tests %}
-    <tr>
-      <td><a href="{{ test.url }}">{{ test.name }}</a></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
 
 {% for test in tests %}
-<h3>{{ test.name }}</h3>
-<div id="{{ test.name }}"></div>
+  <h3><a href="{{ test.url }}">{{ test.name }}</a></h3>
+  <div id="test-graph-{{ test.id }}"></div>
+  <hr>
 {% endfor %}
 
 <script defer>
 {% for test in tests %}
-reportTestDuration('#{{ test.name }}', '{{ test.report_url|raw }}');
+  reportTestDuration('#test-graph-{{ test.id }}', '{{ test.report_url|raw }}');
 {% endfor %}
 </script>
 

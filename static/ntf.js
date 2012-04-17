@@ -26,6 +26,11 @@ function main(load) {
 }
 
 function reportTestDuration(id, url) {
+  var hash = window.location.hash;
+  if (hash && hash.indexOf('#') >= 0) {
+    hash = hash.slice(hash.indexOf('#') + 1)
+    if (hash) url += '&' + hash
+  }
   return new Rickshaw.Graph.JSONP({
     element: document.querySelector(id),
     dataURL: url,
