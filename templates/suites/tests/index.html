@@ -17,4 +17,16 @@
     {% endfor %}
   </tbody>
 </table>
+
+{% for test in tests %}
+<h3>{{ test.name }}</h3>
+<div id="{{ test.name }}"></div>
+{% endfor %}
+
+<script defer>
+{% for test in tests %}
+reportTestDuration('#{{ test.name }}', '{{ test.report_url|raw }}');
+{% endfor %}
+</script>
+
 {% endblock %}

@@ -7,30 +7,7 @@
 
 <div id="chart"></div>
 
-<script>
-new Rickshaw.Graph.JSONP({
-  element: document.querySelector('#chart'),
-  dataURL: '{{ test.report_url|raw }}',
-  width: 800,
-  height: 300,
-  interpolation: 'step-after',
-  onData: function(result) {
-    return [{
-      name: 'Duration (ms)',
-      color: 'steelblue',
-      data: result.data.map(function(d) { return { x: parseInt(d.time / 1000), y: d.duration }; })
-    }];
-  },
-  onComplete: function(transport) {
-    var graph = transport.graph;
-    var detail = new Rickshaw.Graph.HoverDetail({
-      graph: graph,
-      xFormatter: function(x) {
-        var d = new Date(x * 1000).toLocaleString();
-        return d.slice(0, 24) + d.slice(33);
-      }
-    });
-  }
-});
+<script defer>
+reportTestDuration('#chart', '{{ test.report_url|raw }}');
 </script>
 {% endblock %}
