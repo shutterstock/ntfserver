@@ -15,6 +15,7 @@ function handleStatus() {
   events.on('suite', function(data) {
     $('#status-event-' + data.suite.replace(/\./g, '-')).remove();
     data.time = new Date(data.time);
+    data.suite_result_url = data.tests_url; // hack fix
     var html = render({ result: data });
     $('#status-' + (data.ok ? 'pass' : 'fail')).prepend(html);
   });
