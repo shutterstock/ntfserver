@@ -4,8 +4,6 @@
 *.tar.*
 *.tgz
 *swp
-.vagrant
-Vagrantfile
 deps
 node_modules
 vendor.*

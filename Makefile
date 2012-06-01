@@ -1,10 +1,10 @@
 JQUERY_VERSION="1.7.1"
 RICKSHAW_VERSION="master"
-SWIG_VERSION="0.11.0"
+SWIG_VERSION="0.11.2"
 
 TAG=$(shell git tag | sort --version-sort | tail -n 1)
 
-build: clean deps
+build: clean static
 	git archive --format=tar --prefix="ntfserver-$(TAG)/" "$(TAG)" > "ntfserver-$(TAG).tar"
 	tar -xf "ntfserver-$(TAG).tar"
 	rm -f "ntfserver-$(TAG).tar"
@@ -13,7 +13,7 @@ build: clean deps
 	tar -czf "ntfserver-$(TAG).tgz" "ntfserver-$(TAG)/"
 	rm -fr "ntfserver-$(TAG)"
 
-deps:
+static:
 	mkdir -p deps
 	# get jquery
 	curl -s http://ajax.googleapis.com/ajax/libs/jquery/$(JQUERY_VERSION)/jquery.min.js > deps/jquery.min.js
@@ -45,8 +45,7 @@ deps:
 	cat deps/d3.layout.min.js >> deps/vendor.js
 	echo >> deps/vendor.js
 	cat deps/rickshaw/rickshaw.min.js >> deps/vendor.js
-
-dev: deps
+	# copy to static
 	mkdir -p static
 	cp -f deps/vendor.css static/vendor.css
 	cp -f deps/vendor.js static/vendor.js
@@ -54,4 +53,4 @@ dev: deps
 clean:
 	rm -fr deps static/vendor.*
 
-.PHONY: build clean dev
+.PHONY: build clean static

@@ -9,8 +9,8 @@ exports.setUpSql = function(cb) {
   shared.options = {
     mysql: {
       host: '127.0.0.1',
-      user: 'root',
-      password: 'root',
+      user: 'ntf_test',
+      password: 'ntf_test',
       database: 'ntf_test',
     }
   }

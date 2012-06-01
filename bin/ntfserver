@@ -1,34 +1,3 @@
 #!/usr/bin/env node
 
-var fs = require('fs')
-  , iniparser = require('iniparser')
-  , path = require('path')
-  , program = require('commander')
-  , shared = require('../lib/shared')
-  , ntfserver = require('../lib')
-  , options = {}
-
-program
-  .version(ntfserver.version)
-  .option('-c, --config-file <path>', 'Configuration path')
-  .parse(process.argv)
-
-if (program.configFile) {
-  try {
-    var stat = fs.lstatSync(program.configFile)
-  } catch(err) {
-    console.log('Configuration file not found: ' + program.configFile)
-    process.exit(1)
-  }
-
-  if (!stat.isFile()) {
-    console.log('Configuration path is not a file: ' + program.configFile)
-    process.exit(1)
-  }
-
-  options = iniparser.parseSync(program.configFile)
-}
-
-var server = ntfserver.createServer(options)
-
-server.listen(shared.options.http.port)
+require('../lib').run()
