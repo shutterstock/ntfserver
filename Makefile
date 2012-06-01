@@ -14,6 +14,7 @@ build: clean static
 	rm -fr "ntfserver-$(TAG)"
 
 static:
+	rm -fr deps
 	mkdir -p deps
 	# get jquery
 	curl -s http://ajax.googleapis.com/ajax/libs/jquery/$(JQUERY_VERSION)/jquery.min.js > deps/jquery.min.js
