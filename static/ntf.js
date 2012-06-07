@@ -54,6 +54,14 @@ function reportTestDuration(id, url) {
           return d.slice(0, 24) + d.slice(33);
         }
       });
+      var xAxis = new Rickshaw.Graph.Axis.Time({
+        graph: graph
+      });
+      xAxis.render();
+      var yAxis = new Rickshaw.Graph.Axis.Y({
+        graph: graph
+      });
+      yAxis.render();
     }
   });
 }
