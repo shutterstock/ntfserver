@@ -50,6 +50,8 @@ static:
 	mkdir -p static
 	cp -f deps/vendor.css static/vendor.css
 	cp -f deps/vendor.js static/vendor.js
+	# remove deps
+	rm -fr deps
 
 clean:
 	rm -fr deps static/vendor.*
