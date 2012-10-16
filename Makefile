@@ -1,6 +1,6 @@
-JQUERY_VERSION="1.7.1"
-RICKSHAW_VERSION="master"
-SWIG_VERSION="0.11.2"
+JQUERY_VERSION=1.7.1
+RICKSHAW_VERSION=3d43dc0fb263c7eee7bfc6020d8b7fd99637c1ab
+SWIG_VERSION=0.11.2
 
 TAG=$(shell git tag | sort --version-sort | tail -n 1)
 
