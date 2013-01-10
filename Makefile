@@ -1,6 +1,5 @@
 JQUERY_VERSION=1.7.1
 RICKSHAW_VERSION=3d43dc0fb263c7eee7bfc6020d8b7fd99637c1ab
-SWIG_VERSION=0.11.2
 
 TAG=$(shell git tag | sort --version-sort | tail -n 1)
 
@@ -28,8 +27,7 @@ static:
 	git clone git://github.com/shutterstock/rickshaw.git deps/rickshaw
 	cd deps/rickshaw && git checkout $(RICKSHAW_VERSION) && make build
 	# get swig
-	git clone git://github.com/paularmstrong/swig.git deps/swig
-	cd deps/swig && git checkout v$(SWIG_VERSION) && npm install && make browser
+	curl -s http://paularmstrong.github.com/swig/js/swig.pack.min.js > deps/swig.min.js
 	# build css
 	cat deps/rickshaw/rickshaw.min.css > deps/vendor.css
 	echo >> deps/vendor.css
@@ -37,7 +35,7 @@ static:
 	# build js
 	cat deps/jquery.min.js > deps/vendor.js
 	echo >> deps/vendor.js
-	cat deps/swig/dist/browser/swig.pack.min.js >> deps/vendor.js
+	cat deps/swig.min.js >> deps/vendor.js
 	echo >> deps/vendor.js
 	cat deps/bootstrap/js/bootstrap.min.js >> deps/vendor.js
 	echo >> deps/vendor.js
