@@ -14,7 +14,7 @@ exports.setUpSql = function(cb) {
       database: 'ntf_test',
     }
   }
-  shared.sql = mysql.createClient(shared.options.mysql)
+  shared.sql = mysql.createConnection(shared.options.mysql)
 
   var tables = [
     'assertion_result',

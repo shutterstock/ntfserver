@@ -20,7 +20,7 @@
     "type": "git",
     "url": "https://github.com/silas/ntfserver.git"
   },
-  "scripts": { "install": "make static" },
+  "scripts": { "install": "make static", "test": "./node_modules/.bin/nodeunit test" },
   "bugs": { "url": "https://github.com/silas/ntfserver/issues" },
   "main": "./lib"
 }
