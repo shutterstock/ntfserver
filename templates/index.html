@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="frontpage-header page-header"><h1>Number of Failing Tests</h1></div>
+
+<a class="frontpage" href="{% if ok %}/status{% else %}/events{% endif %}"><div class="label-{% if ok %}success{% else %}important{% endif %}">{{ fail }}</div></a>
+{% endblock %}
