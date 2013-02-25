@@ -6,4 +6,5 @@
 *swp
 deps
 node_modules
+ntfserver-*
 vendor.*
