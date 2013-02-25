@@ -1,9 +1,8 @@
 JQUERY_VERSION=1.7.1
 RICKSHAW_VERSION=3d43dc0fb263c7eee7bfc6020d8b7fd99637c1ab
+TAG=$(shell git tag | PATH="/usr/local/opt/coreutils/libexec/gnubin:$(PATH)" sort --version-sort | tail -n 1)
 
-TAG=$(shell git tag | sort --version-sort | tail -n 1)
-
-build: clean static
+build: clean static_setup
 	git archive --format=tar --prefix="ntfserver-$(TAG)/" "$(TAG)" > "ntfserver-$(TAG).tar"
 	tar -xf "ntfserver-$(TAG).tar"
 	rm -f "ntfserver-$(TAG).tar"
@@ -12,7 +11,7 @@ build: clean static
 	tar -czf "ntfserver-$(TAG).tgz" "ntfserver-$(TAG)/"
 	rm -fr "ntfserver-$(TAG)"
 
-static:
+static_setup:
 	rm -fr deps
 	mkdir -p deps
 	# get jquery
@@ -48,10 +47,11 @@ static:
 	mkdir -p static
 	cp -f deps/vendor.css static/vendor.css
 	cp -f deps/vendor.js static/vendor.js
-	# remove deps
+
+static: static_setup
 	rm -fr deps
 
 clean:
 	rm -fr deps static/vendor.*
 
-.PHONY: build clean static
+.PHONY: build clean static static_setup
