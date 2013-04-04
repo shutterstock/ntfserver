@@ -1,14 +1,29 @@
 {% extends "suites/results/index.html" %}
 
-{% block head_title %}{{ assertion_result.id }} - {% parent %}{% endblock %}
+{% block head_title %}{{ assertion_result.test }} ({{ assertion_result.id }}) - {% parent %}{% endblock %}
 
 {% block content %}
-<div class="page-header"><h1>{{ assertion_result.id }} <span class="label label-{% if assertion_result.ok %}success{% else %}important{% endif %}">{% if assertion_result.ok %}pass{% else %}fail{% endif %}</span></h1></div>
-
-<p>{{ assertion_result.message }}</p>
+<div class="page-header"><h1>{{ assertion_result.test }} ({{ assertion_result.id }}) <span class="label label-{% if assertion_result.ok %}success{% else %}important{% endif %}">{% if assertion_result.ok %}pass{% else %}fail{% endif %}</span></h1></div>
 
 {% if assertion_result.stack_trace %}
 <pre>{{ assertion_result.stack_trace }}</pre>
 {% endif %}
 
+<h4>Test metadata</h4>
+<table class="table table-condensed table-bordered">
+        <thead>
+                <tr>
+                        <th>Key</th>
+                        <th>Value</th>
+                </tr>
+        </thead>
+        <tbody>
+                {% for meta in assertion_result.meta %}
+                <tr>
+                        <td>{{ loop.key }}</td>
+                        <td><pre>{{ assertion_result.meta[loop.key] }}</pre></td>
+                </tr>
+                {% endfor %}
+        </tbody>
+</table>
 {% endblock %}
