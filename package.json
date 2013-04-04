@@ -1,26 +1,28 @@
 {
   "name": "ntfserver",
   "description": "Network Testing Framework Server",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Silas Sewell <silas@sewell.org>",
   "engines": { "node": ">= 0.6" },
   "dependencies": {
     "async": ">= 0.1.10",
+    "clean-css": ">= 1.0.0",
     "express": ">= 2.4.7; < 2.6",
     "mysql": ">= 2.0.0-alpha5",
     "redis": ">= 0.6.7",
     "setting": ">= 0.1.0",
     "socket.io": ">= 0.9.2",
-    "swig": ">= 0.13.4"
+    "swig": ">= 0.13.4",
+    "uglify-js": ">= 2.2.5"
   },
   "devDependencies": {
     "nodeunit": ">= 0.6.4"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/silas/ntfserver.git"
+    "url": "https://github.com/shutterstock/ntfserver.git"
   },
   "scripts": { "install": "make static", "test": "./node_modules/.bin/nodeunit test" },
-  "bugs": { "url": "https://github.com/silas/ntfserver/issues" },
+  "bugs": { "url": "https://github.com/shutterstock/ntfserver/issues" },
   "main": "./lib"
 }
