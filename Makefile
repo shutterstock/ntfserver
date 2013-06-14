@@ -17,7 +17,7 @@ static_setup:
 	# get jquery
 	curl -s http://ajax.googleapis.com/ajax/libs/jquery/$(JQUERY_VERSION)/jquery.min.js > deps/jquery.min.js
 	# get bootstrap
-	curl -s http://twitter.github.com/bootstrap/assets/bootstrap.zip -o deps/bootstrap.zip
+	curl -s http://twitter.github.io/bootstrap/assets/bootstrap.zip -o deps/bootstrap.zip
 	cd deps && unzip bootstrap.zip
 	# get d3
 	curl -s https://raw.github.com/shutterstock/rickshaw/$(RICKSHAW_VERSION)/vendor/d3.min.js > deps/d3.min.js
