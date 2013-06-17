@@ -1,7 +1,7 @@
 {
   "name": "ntfserver",
   "description": "Network Testing Framework Server",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Silas Sewell <silas@sewell.org>",
   "engines": { "node": ">= 0.6" },
   "dependencies": {
