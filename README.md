@@ -2,7 +2,7 @@ ntfserver
 =========
 
 ntfserver is a centralized server for collecting and displaying
-[ntfd](https://github.com/silas/ntfd) data.
+[ntfd](https://github.com/shutterstock/ntfd) data.
 
 ### Requirements
 

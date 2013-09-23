@@ -2,7 +2,7 @@
   "name": "ntfserver",
   "description": "Network Testing Framework Server",
   "version": "0.0.9",
-  "author": "Silas Sewell <silas@sewell.org>",
+  "author": "NTF Maintainers <ntf-maintainers@shutterstock.com>",
   "engines": { "node": ">= 0.6" },
   "dependencies": {
     "async": ">= 0.1.10",
