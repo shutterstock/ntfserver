@@ -5,6 +5,9 @@ ntfserver is a centralized server for collecting and displaying [ntfd](https://g
 
 It's part of [ntf](https://github.com/shutterstock/ntf), a network testing framework.
 
+See [the ntf homepage](http://code.shutterstock.com/ntf/) for more details about
+the ntf framework.
+
 ### Requirements
 
   * [node](http://nodejs.org/)
