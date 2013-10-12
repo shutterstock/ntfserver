@@ -26,7 +26,7 @@ static_setup:
 	git clone git://github.com/shutterstock/rickshaw.git deps/rickshaw
 	cd deps/rickshaw && git checkout $(RICKSHAW_VERSION) && make build
 	# get swig
-	curl -s http://paularmstrong.github.com/swig/js/swig.pack.min.js > deps/swig.min.js
+	curl -s http://paularmstrong.github.io/swig/js/swig.min.js > deps/swig.min.js
 	# build css
 	cat deps/rickshaw/rickshaw.min.css > deps/vendor.css
 	echo >> deps/vendor.css
