@@ -1,9 +1,9 @@
 {
   "name": "ntfserver",
   "description": "Network Testing Framework Server",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "author": "NTF Maintainers <ntf-maintainers@shutterstock.com>",
-  "engines": { "node": ">= 0.6" },
+  "engines": { "node": ">= 0.8" },
   "dependencies": {
     "async": ">= 0.1.10",
     "clean-css": ">= 1.0.0",
