@@ -22,7 +22,10 @@ function handleStatus() {
 }
 
 function main(load) {
-  swig.init({ filters: shared.filters });
+  swig.setDefaults({});
+  swig.setFilter('age',shared.filters.age);
+  swig.setFilter('time',shared.filters.time);
+  swig.setFilter('suite_to_safe',shared.filters.suite_to_safe);
   if (load) load();
 }
 
