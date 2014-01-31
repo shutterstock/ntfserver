@@ -11,10 +11,6 @@
       <td><a href="{{ event.url }}">{{ event.summary }}</a></td>
       <td>{{ event.time|age }}</td>
     </tr>
-    {% else %}
-    <tr>
-      <td colspan="3">No events</td>
-    </tr>
     {% endfor %}
   </tbody>
 </table>
