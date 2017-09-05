@@ -3,7 +3,9 @@
   "description": "Network Testing Framework Server",
   "version": "0.0.14",
   "author": "NTF Maintainers <ntf-maintainers@shutterstock.com>",
-  "engines": { "node": ">= 0.8" },
+  "engines": {
+    "node": ">= 0.8"
+  },
   "dependencies": {
     "async": ">= 0.1.10",
     "clean-css": ">= 1.0.0",
@@ -27,7 +29,13 @@
     "type": "git",
     "url": "https://github.com/shutterstock/ntfserver.git"
   },
-  "scripts": { "install": "make static", "test": "./node_modules/.bin/nodeunit test" },
-  "bugs": { "url": "https://github.com/shutterstock/ntfserver/issues" },
-  "main": "./lib"
+  "scripts": {
+    "install": "make static",
+    "test": "./node_modules/.bin/nodeunit test"
+  },
+  "bugs": {
+    "url": "https://github.com/shutterstock/ntfserver/issues"
+  },
+  "main": "./lib",
+  "license": "MIT"
 }
